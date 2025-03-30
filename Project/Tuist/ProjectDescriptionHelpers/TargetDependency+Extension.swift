@@ -22,6 +22,8 @@ public extension TargetDependency {
   static let network: TargetDependency = .external(name: "Network-iOS")
   static let swiftuiIntrospect: TargetDependency = .external(name: "SwiftUIIntrospect")
   static let partialSheet: TargetDependency = .external(name: "PartialSheet")
+  static let sdWebImage: TargetDependency = .external(name: "SDWebImage")
+  static let sdWebImageSwiftUI: TargetDependency = .external(name: "SDWebImageSwiftUI")
   
   static let archiveFoundation: TargetDependency = .project(target: "ArchiveFoundation", path: .rootProjectPath("ArchiveFoundation"))
   static let uiComponents: TargetDependency = .project(target: "UIComponents", path: .rootProjectPath("UIComponents"))

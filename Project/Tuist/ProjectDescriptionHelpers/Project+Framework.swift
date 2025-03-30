@@ -103,10 +103,12 @@ extension Project {
       resources: resources,
       scripts: targetScripts,
       dependencies: frameworkDependencies,
-      settings: .settings(configurations: [
-        .debug(name: .debug),
-        .release(name: .release)
-      ]),
+      settings: .settings(
+          configurations: [
+            .debug(name: .debug, settings: ["OTHER_LDFLAGS": "-ObjC"], xcconfig: nil),
+            .release(name: .release, settings: ["OTHER_LDFLAGS": "-ObjC"], xcconfig: nil)
+          ]
+      ),
       coreDataModels: coreDataModel
     )
     

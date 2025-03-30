@@ -40,7 +40,9 @@ let package = Package(
     .package(url: "https://github.com/Team-Archive/ImageLoader-iOS.git", branch: "master"),
     .package(url: "https://github.com/Team-Archive/Network-iOS.git", branch: "master"),
     .package(url: "https://github.com/siteline/swiftui-introspect", from: "1.1.4"),
-    .package(url: "https://github.com/AndreaMiotto/PartialSheet.git", from: "3.1.1")
+    .package(url: "https://github.com/AndreaMiotto/PartialSheet.git", from: "3.1.1"),
+    .package(url: "https://github.com/SDWebImage/SDWebImage.git", from: "5.21.0"),
+    .package(url: "https://github.com/SDWebImage/SDWebImageSwiftUI.git", from: "3.1.3")
   ],
   targets: [
     .target(
@@ -55,7 +57,9 @@ let package = Package(
         "Lottie",
         "ComposableArchitecture",
         "ImageLoader-iOS",
-        "Network-iOS"
+        "Network-iOS",
+        "SDWebImage",
+        "SDWebImageSwiftUI"
       ]
     )
   ],

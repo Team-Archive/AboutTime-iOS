@@ -16,7 +16,9 @@ let project = Project(
         path: "../ArchiveFoundation"
       ),
       .imageLoader,
-      .lottie
+      .lottie,
+      .sdWebImage,
+      .sdWebImageSwiftUI
     ],
     testDependencies: [],
     targetScripts: [
@@ -34,6 +36,7 @@ let project = Project(
       name: "Lottie",
       parser: .json,
       extensions: ["lottie"]
-    )
+    ),
+    .custom(name: "Emojis", parser: .files, extensions: ["png"])
   ]
 )
