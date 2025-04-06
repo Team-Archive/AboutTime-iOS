@@ -8,17 +8,40 @@
 
 import Foundation
 
-public enum ExpressiveEmoji {
-  case heart
-  case flower
-  
-  public var emoji: String {
+public enum ExpressiveEmoji: CaseIterable {
+  case clappingHands
+  case faceWithTearsOfJoy
+  case grinningFace
+  case kissingFaceWithClosedEyes
+  case loudlyCryingFace
+  case partyPopper
+  case redHeart
+  case smilingFaceWithHeartEyes
+  case smilingFaceWithHearts
+  case thumbsUp
+
+  public var name: String {
     switch self {
-    case .heart:
-      return "💕"
-    case .flower:
-      return "🌸"
+    case .clappingHands:
+      return "ClappingHands"
+    case .faceWithTearsOfJoy:
+      return "FaceWithTearsOfJoy"
+    case .grinningFace:
+      return "GrinningFace"
+    case .kissingFaceWithClosedEyes:
+      return "KissingFaceWithClosedEyes"
+    case .loudlyCryingFace:
+      return "LoudlyCryingFace"
+    case .partyPopper:
+      return "PartyPopper"
+    case .redHeart:
+      return "RedHeart"
+    case .smilingFaceWithHeartEyes:
+      return "SmilingFaceWithHeartEyes"
+    case .smilingFaceWithHearts:
+      return "SmilingFaceWithHearts"
+    case .thumbsUp:
+      return "ThumbsUp"
     }
   }
-  
 }

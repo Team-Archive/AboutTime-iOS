@@ -16,8 +16,8 @@ public struct EmojiListView: View {
   
   // MARK: - private properties
   private let dataSource: [EmojiListModel] = [
-    EmojiListModel(emoji: .heart, count: 10),
-    EmojiListModel(emoji: .flower, count: 1),
+    EmojiListModel(emoji: .redHeart, count: 10),
+    EmojiListModel(emoji: .clappingHands, count: 1),
   ]
   
   // MARK: - public properties

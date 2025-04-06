@@ -142,15 +142,9 @@ struct ContentView: View {
                 self.isSelectableButtonSelected.toggle()
                 print("Button: \(self.isSelectableButtonSelected)")
               })
-            ATSelectableEmojiButton(
-              emoji: .heart,
-              selectedCount: 100,
-              isSelected: self.$isSelectableEmojiButtonSelected,
-              action: { isSelected, count in
-                self.isSelectableEmojiButtonSelected.toggle()
-                print("Button: \(self.isSelectableEmojiButtonSelected) \(count)")
-              }
-            )
+            
+            ATSelectableEmojiListSampleView()
+            
             Toggle("", isOn: $isToggleOn)
               .toggleStyle(ATToggleStyle(
                 onColor: Gen.Colors.purple.color,
@@ -237,6 +231,8 @@ struct ContentView: View {
       }
     }
   }
+  
+  
 }
 
 extension ContentView {

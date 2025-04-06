@@ -88,9 +88,10 @@ public struct ATSelectableEmojiContentsView: View {
   
   public var body: some View {
     
-    HStack(spacing: 1.5) {
-      Text("\(emoji.emoji)")
-        .font(self.font)
+    HStack(spacing: 2) {
+      ATEmojiView(resource: emoji)
+        .frame(width: 16, height: 16)
+      
       Text("\(count)")
         .font(self.font)
         .foregroundStyle(textColor)
@@ -115,7 +116,7 @@ public struct ATSelectableEmojiContentsView: View {
 #Preview {
   
   VStack {
-    ATSelectableEmojiButton(emoji: .flower, selectedCount: 10, isSelected: .constant(false)) { isSelected, count in
+    ATSelectableEmojiButton(emoji: .redHeart, selectedCount: 10, isSelected: .constant(false)) { isSelected, count in
       print("hola: \(isSelected) \(count)")
     }
   }
