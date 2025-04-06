@@ -37,6 +37,6 @@ let project = Project(
       parser: .json,
       extensions: ["lottie"]
     ),
-    .custom(name: "Emojis", parser: .files, extensions: ["png"])
+    
   ]
 )
