@@ -76,6 +76,18 @@ struct SampleApp: App {
                   tapHandler: { item in
                   print("Tap Grid Image View : \(item)")
                 }).padding(.horizontal, 20)
+                
+                
+                ATEmojiExpressionView(
+                  geometry: geometry,
+                  data: ExpressiveEmoji.allCases.map {
+                    ATEmojiExpressionData(
+                      emoji: $0,
+                      selectionCount: Int.random(in: 0...100),
+                      isSelectedByUser: false
+                    )
+                  }
+                )
 
                 Spacer()
               }
