@@ -19,12 +19,12 @@ public struct ATSelectableEmojiButton: View {
   
   // MARK: - private properties
   
-  @State var selectedCount: UInt
+  @State var selectedCount: Int
   private let emoji: ExpressiveEmoji
   
   // MARK: - public properties
   
-  public var action: (_ isSelected: Bool, _ count: UInt) -> Void
+  public var action: (_ isSelected: Bool, _ count: Int) -> Void
   
   // MARK: - life cycle
   
@@ -37,13 +37,8 @@ public struct ATSelectableEmojiButton: View {
       ), 
       isSelected: $isSelected
     ) { isSelected in
-      if isSelected {
-        selectedCount += 1
-      } else {
-        if selectedCount != 0 {
-          selectedCount -= 1
-        }
-      }
+      selectedCount += isSelected ? -1 : 1
+      selectedCount = max(selectedCount, 0)
       self.action(isSelected, selectedCount)
     }
 
@@ -51,9 +46,9 @@ public struct ATSelectableEmojiButton: View {
   
   public init(
     emoji: ExpressiveEmoji,
-    selectedCount: UInt,
+    selectedCount: Int,
     isSelected: Binding<Bool>,
-    action: @escaping (_ isSelected: Bool, _ count: UInt) -> Void,
+    action: @escaping (_ isSelected: Bool, _ count: Int) -> Void,
     isEnabled: Binding<Bool> = .constant(true)
   ) {
     self.emoji = emoji
@@ -76,7 +71,7 @@ public struct ATSelectableEmojiContentsView: View {
   
   // MARK: - private properties
   
-  @Binding private var count: UInt
+  @Binding private var count: Int
   private let emoji: ExpressiveEmoji
   
   private let font: Font = .fonts(.body13)
@@ -94,14 +89,16 @@ public struct ATSelectableEmojiContentsView: View {
       
       Text("\(count)")
         .font(self.font)
+        .fontDesign(.monospaced)
         .foregroundStyle(textColor)
+        .lineLimit(1)
     }
     
   }
   
   public init(
     emoji: ExpressiveEmoji,
-    count: Binding<UInt>
+    count: Binding<Int>
   ) {
     self.emoji = emoji
     self._count = count
