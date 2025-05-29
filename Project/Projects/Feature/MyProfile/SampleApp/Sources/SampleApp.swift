@@ -86,8 +86,9 @@ struct SampleApp: App {
                       selectionCount: Int.random(in: 0...100),
                       isSelectedByUser: false
                     )
+                  }) {
+                    print("Tap Add Button")
                   }
-                )
 
                 Spacer()
               }
