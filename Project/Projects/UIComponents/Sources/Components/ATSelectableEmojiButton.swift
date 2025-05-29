@@ -34,7 +34,8 @@ public struct ATSelectableEmojiButton: View {
       contentsView: ATSelectableEmojiContentsView(
         emoji: self.emoji,
         count: self.$selectedCount
-      ), 
+      ),
+      backgroundColor: Gen.Colors.purpleGray300.color,
       isSelected: $isSelected
     ) { isSelected in
       selectedCount += isSelected ? -1 : 1

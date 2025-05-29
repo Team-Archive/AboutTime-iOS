@@ -31,6 +31,7 @@ public struct ATEmojiExpressionData: Hashable, Identifiable {
 public struct ATEmojiExpressionView: View {
   
   @State private var data: [ATEmojiExpressionData]
+  private var addButtonHandler: (() -> Void)?
   
   private let geometry: GeometryProxy
   
@@ -40,10 +41,12 @@ public struct ATEmojiExpressionView: View {
   
   public init(
     geometry: GeometryProxy,
-    data: [ATEmojiExpressionData] = []
+    data: [ATEmojiExpressionData] = [],
+    addButtonHandler: (() -> Void)?
   ) {
     self.geometry = geometry
     _data = State(initialValue: data)
+    self.addButtonHandler = addButtonHandler
   }
   
   public var body: some View {
@@ -58,6 +61,14 @@ public struct ATEmojiExpressionView: View {
             // TODO: API 호출을 위해 action 전달하는 부분 구현 필요
           }
         )
+      }
+      
+      ATSelectableButton(
+        contentsView: Gen.Images.emoji.image.resizable().aspectRatio(contentMode: .fit).frame(width: 20, height: 16),
+        backgroundColor: Gen.Colors.purpleGray300.color,
+        isSelected: .constant(false)
+      ) { _ in
+        addButtonHandler?()
       }
     }
     .frame(maxWidth: geometryWidth, alignment: .leading)
