@@ -56,23 +56,34 @@ public struct CalendarView: View {
   @ViewBuilder
   private func CalendarMonthInfoView() -> some View {
     WithViewStore(store, observe: { $0 }) { state in
-      HStack(alignment: .center) {
-        Button(action: {
-          state.send(.selectPreviousMonth)
-        }, label: {
-          Gen.Images.arrowLeft24.image
-        })
+      ZStack {
+        HStack(spacing: 0) {
+          CalendarTodayButton {
+            state.send(.selectToday)
+          }.frame(width: 49)
+          
+          Spacer()
+        }
         
-        Text("\(state.selectedMonth.formatToyyyyM())")
-          .font(.fonts(.title20))
-          .foregroundStyle(Gen.Colors.white.color)
-          .padding(.horizontal, 12)
-        
-        Button(action: {
-          state.send(.selectNextMonth)
-        }, label: {
-          Gen.Images.arrowRight24.image
-        })
+        HStack(spacing: 12) {
+          
+          Button(action: {
+            state.send(.selectPreviousMonth)
+          }, label: {
+            Gen.Images.arrowLeft24.image
+          })
+          
+          Text("\(state.selectedMonth.formatToyyyyM())")
+            .font(.fonts(.title20))
+            .foregroundStyle(Gen.Colors.white.color)
+            .padding(.horizontal, 12)
+          
+          Button(action: {
+            state.send(.selectNextMonth)
+          }, label: {
+            Gen.Images.arrowRight24.image
+          })
+        }
       }
       .frame(maxWidth: .infinity, maxHeight: 24)
       .padding(.bottom, 20)
