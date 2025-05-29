@@ -17,6 +17,7 @@ public struct CalendarReducer: Reducer {
   // MARK: - TCA Define
   
   public enum Action: Equatable {
+    case selectToday
     case selectNextMonth
     case selectPreviousMonth
     case selectDay(Date)
@@ -74,6 +75,12 @@ public struct CalendarReducer: Reducer {
   public var body: some ReducerOf<Self> {
     Reduce { state, action in
       switch action {
+      case .selectToday:
+        let today = Date()
+        state.selectedMonth = today
+        return .concatenate(.run(operation: { send in
+          await send(.makeDatasource(today))
+        }))
       case .selectNextMonth:
         if let nextMonth = useCase.fetchNextMonth(target: state.selectedMonth) {
           state.selectedMonth = nextMonth
