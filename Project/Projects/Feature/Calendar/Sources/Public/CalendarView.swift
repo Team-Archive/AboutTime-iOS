@@ -19,6 +19,8 @@ public struct CalendarView: View {
   // MARK: - private properties
   @Bindable private var store: StoreOf<CalendarReducer>
   
+  private let scrollViewProxy: ScrollViewProxy
+  
   // MARK: - public properties
   
   
@@ -34,22 +36,20 @@ public struct CalendarView: View {
           CalendarDayView()
           CalendarExpandView()
         }.onAppear(perform: {
-          if let selectedDay = state.selectedDay {
-            store.send(.setMode(.week))
-            store.send(.selectDay(selectedDay))
-          } else {
-            store.send(.makeDatasource(state.selectedMonth))
-          }
+          store.send(.makeDatasource(state.selectedMonth))
         })
       }
     }
   }
   
-  public init(reducer: CalendarReducer, selectHandler: ((ATCalendar?) -> Void)? = nil) {
+  public init(
+    store: StoreOf<CalendarReducer>,
+    selectHandler: ((ATCalendar?) -> Void)? = nil,
+    scrollViewProxy: ScrollViewProxy
+  ) {
     self.selectHandler = selectHandler
-    self.store = StoreOf<CalendarReducer>(initialState: reducer.initialState, reducer: {
-      return reducer
-    })
+    self.store = store
+    self.scrollViewProxy = scrollViewProxy
   }
   
   // MARK: - private method
@@ -60,7 +60,10 @@ public struct CalendarView: View {
         HStack(spacing: 0) {
           CalendarTodayButton {
             state.send(.selectToday)
-          }.frame(width: 49)
+            scrollViewProxy.scrollTo("today_button", anchor: .top)
+          }
+          .id("today_button")
+          .frame(width: 49)
           
           Spacer()
         }
@@ -128,8 +131,12 @@ public struct CalendarView: View {
                   .font(.fonts(.bodyBold14))
                   .foregroundStyle(isSelected ? Gen.Colors.point.color : Gen.Colors.white.color)
               }.onTapGesture {
-                guard let date = state.datasource[safe: index]?.date else { return }
+                guard let data =  state.datasource[safe: index],
+                      let date = data.date else { return }
+  
+                selectHandler?(data)
                 state.send(.selectDay(date))
+                scrollViewProxy.scrollTo("today_button", anchor: .top)
               }
               .frame(width: 40, height: 40, alignment: .center)
               .overlay(content: {
@@ -151,18 +158,23 @@ public struct CalendarView: View {
   private func CalendarExpandView() -> some View {
     WithViewStore(store, observe: { $0 }) { state in
       if state.mode == .week {
-        HStack(alignment: .center) {
-          Text("펼쳐보기")
-            .font(.fonts(.bodyBold14))
-            .foregroundStyle(Gen.Colors.white.color)
+        VStack {
+          HStack(alignment: .center) {
+            Text("펼쳐보기")
+              .font(.fonts(.bodyBold14))
+              .foregroundStyle(Gen.Colors.white.color)
+            
+            Gen.Images.arrowDown24.image
+              .resizable()
+              .frame(width: 16, height: 16)
+          }
+          .padding(.vertical, 12)
+          .onTapGesture {
+            state.send(.setMode(.month))
+          }
           
-          Gen.Images.arrowDown24.image
-            .resizable()
-            .frame(width: 16, height: 16)
-        }
-        .padding(.vertical, 12)
-        .onTapGesture {
-          state.send(.setMode(.month))
+          Gen.Colors.purpleGray300.color
+            .frame(height: 1)
         }
       }
     }

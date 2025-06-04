@@ -12,25 +12,54 @@ import Domain
 import Calendar
 import UIComponents
 import MyProfile
+import ComposableArchitecture
 
 @main
 struct SampleApp: App {
   var body: some Scene {
     WindowGroup {
-      ZStack {
-        ATBackgroundView()
-          .edgesIgnoringSafeArea(
-            .all
+      ContentView()
+    }
+  }
+}
+
+struct ContentView: View {
+  
+  @State var hasPost: Bool = false
+  
+  @State private var calendarStore: StoreOf<CalendarReducer>
+  
+  let emptyPostData = PostItemData(imageList: [], emojiList: [])
+  let dummyPostData = PostItemData.mockData(imageCount: 5)
+  
+  init() {
+    let reducer = CalendarReducer(
+      selectedMonth: Date(),
+      useCase: CalendarUsecaseImpl(
+        repository: StubCalendarRepositoryImpl()
+      )
+    )
+    _calendarStore = State(initialValue: Store(initialState: reducer.initialState, reducer: {
+      reducer
+    }))
+  }
+  
+  var body: some View {
+    ZStack {
+      ATBackgroundView()
+        .edgesIgnoringSafeArea(
+          .all
+        )
+      
+      VStack {
+        ATNavigationBar(
+          type: .default(
+            backAction: nil,
+            trailingAction: nil
           )
+        )
         
-        VStack {
-          ATNavigationBar(
-            type: .default(
-              backAction: nil,
-              trailingAction: nil
-            )
-          )
-          
+        ScrollViewReader { proxy in
           GeometryReader { geometry in
             ScrollView(.vertical) {
               VStack {
@@ -55,40 +84,35 @@ struct SampleApp: App {
                   .frame(height: 20)
                 
                 CalendarView(
-                  reducer: CalendarReducer(
-                    selectedMonth: Date(),
-                    useCase: CalendarUsecaseImpl(
-                      repository: StubCalendarRepositoryImpl()
-                    )
-                  )
+                  store: calendarStore,
+                  selectHandler: { selectedDate in
+                    guard let selectedData = selectedDate,
+                          let hasData = selectedData.photoURL else {
+                      self.hasPost = false
+                      return
+                    }
+                    
+                    self.hasPost = true
+                  },
+                  scrollViewProxy: proxy
                 ).padding(.horizontal, 20)
                 
                 Spacer()
                   .frame(height: 20)
                 
-  //              CalendarDetailView()
-  //                .padding(.horizontal, 20)
-
-                ATGridImageView(
-                  geometry: geometry,
-                  data: MockImageURL.fetchDatas(with: 5)
-                    .compactMap { ATGridImageView.ATGridImageItem(url: $0) },
-                  tapHandler: { item in
-                  print("Tap Grid Image View : \(item)")
-                }).padding(.horizontal, 20)
+                if hasPost {
+                  PostItemView(
+                    geometry: geometry,
+                    data: PostItemData.mockData(imageCount: Int.random(in: 1...10))
+                  )
+                } else {
+                  Text("올린 소식이 없어요")
+                    .font(.fonts(.bodyBold14))
+                    .foregroundStyle(Gen.Colors.gray300.color)
+                    .padding(.top, 204)
+                }
                 
-                
-                ATEmojiExpressionView(
-                  geometry: geometry,
-                  data: ExpressiveEmoji.allCases.map {
-                    ATEmojiExpressionData(
-                      emoji: $0,
-                      selectionCount: Int.random(in: 0...100),
-                      isSelectedByUser: false
-                    )
-                  }) {
-                    print("Tap Add Button")
-                  }
+                Spacer(minLength: 341)
 
                 Spacer()
               }

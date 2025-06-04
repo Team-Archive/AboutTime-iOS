@@ -9,7 +9,7 @@
 import SwiftUI
 import ArchiveFoundation
 
-public struct ATEmojiExpressionData: Hashable, Identifiable {
+public struct ATEmojiExpressionData: Hashable, Identifiable, Sendable {
   public let id: UUID
   public let emoji: ExpressiveEmoji
   public let selectionCount: Int

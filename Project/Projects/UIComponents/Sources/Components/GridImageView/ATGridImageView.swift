@@ -10,7 +10,7 @@ import SwiftUI
 public struct ATGridImageView: View {
   
   // MARK: - public state
-  public struct ATGridImageItem {
+  public struct ATGridImageItem: Sendable {
     let id: UUID
     let url: URL
     
