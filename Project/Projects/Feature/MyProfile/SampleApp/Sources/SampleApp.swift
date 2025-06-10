@@ -29,7 +29,6 @@ struct ContentView: View {
   
   @State private var calendarStore: StoreOf<CalendarReducer>
   
-  let emptyPostData = PostItemData(imageList: [], emojiList: [])
   let dummyPostData = PostItemData.mockData(imageCount: 5)
   
   init() {

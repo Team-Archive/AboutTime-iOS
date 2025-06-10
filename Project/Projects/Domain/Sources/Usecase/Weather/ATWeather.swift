@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct ATWeather: Equatable {
+public struct ATWeather: Equatable, Sendable {
   public let tag: ATWeatherTag
   public let temperature: Float
   
