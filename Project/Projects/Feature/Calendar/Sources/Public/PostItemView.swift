@@ -9,21 +9,24 @@
 import SwiftUI
 import UIComponents
 import ArchiveFoundation
+import Domain
 
 public struct PostItemData: Sendable {
   public let imageList: [ATGridImageView.ATGridImageItem]
   public let emojiList: [ATEmojiExpressionData]
-  
-  public var isEmpty: Bool {
-    imageList.isEmpty && emojiList.isEmpty
-  }
-  
+  public let dateText: String
+  public let weatherData: ATWeather
+
   public init(
     imageList: [ATGridImageView.ATGridImageItem],
-    emojiList: [ATEmojiExpressionData]
+    emojiList: [ATEmojiExpressionData],
+    dateText: String,
+    weatherData: ATWeather
   ) {
     self.imageList = imageList
     self.emojiList = emojiList
+    self.dateText = dateText
+    self.weatherData = weatherData
   }
   
   public static func mockData(imageCount: Int) -> PostItemData {
@@ -36,7 +39,10 @@ public struct PostItemData: Sendable {
           selectionCount: Int.random(in: 0...100),
           isSelectedByUser: false
         )
-      })
+      },
+      dateText: "6시간 전",
+      weatherData: .init(tag: .cloudy, temperature: 15)
+    )
   }
 }
 
@@ -52,19 +58,46 @@ public struct PostItemView: View {
   }
   
   public var body: some View {
+    VStack {
       ATGridImageView(
         geometry: geometry,
         data: data.imageList,
         tapHandler: { item in
-        print("Tap Grid Image View : \(item)")
-      }).padding(.horizontal, 20)
-
-
+          print("Tap Grid Image View : \(item)")
+        }).padding(.horizontal, 20)
+      
+      HStack {
+        Text(data.dateText)
+          .font(.fonts(.body12))
+          .foregroundStyle(Gen.Colors.gray300.color)
+        
+        // TODO: Weather 뷰 디자인 반영 필요
+        ATWeatherTagView(
+          designType: .primary,
+          weather: data.weatherData.tag.convertToTag(),
+          temperature: data.weatherData.temperature
+        )
+        
+        Spacer()
+      }
+      .padding(.horizontal, 20)
+      
       ATEmojiExpressionView(
         geometry: geometry,
         data: data.emojiList
       ) {
-          print("Tap Add Button")
-        }
+        print("Tap Add Button")
+      }
+    }
+  }
+}
+
+// TODO: 임시
+extension ATWeatherTag {
+  func convertToTag() -> ATWeatherTagView.Weather {
+    switch self {
+    case .cloudy:
+      return .cloudy
+    }
   }
 }
