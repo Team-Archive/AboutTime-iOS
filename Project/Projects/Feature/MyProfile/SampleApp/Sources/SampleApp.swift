@@ -77,7 +77,48 @@ struct ContentView: View {
                     print("profile edit clicked")
                   }
                 
-                MonthRecapView()
+                MonthRecapView(
+                  month: "7월",
+                  data: [
+                    .profile(
+                      RecapProfileData(
+                        imageURL: MockImageURL.fetchDatas(with: 1).first!,
+                        type: .communicate
+                      )
+                    ),
+                    .profile(
+                      RecapProfileData(
+                        imageURL: MockImageURL.fetchDatas(with: 1).first!,
+                        type: .reaction
+                      )
+                    ),
+                    .post(
+                      RecapPostData(
+                        imageURL: MockImageURL.fetchDatas(with: 1).first!,
+                        type: .reaction
+                      )
+                    ),
+                    .text(
+                      RecapTextData(
+                        content: "6PM-9PM",
+                        type: .timeRange
+                      )
+                    ),
+                    .text(
+                      RecapTextData(
+                        content: "7월 7일",
+                        type: .day
+                      )
+                    ),
+                    .text(
+                      RecapTextData(
+                        content: "30회",
+                        type: .upload
+                      )
+                    )
+                  ]) {
+                    print("모두보기 클릭")
+                  }
                 
                 Spacer()
                   .frame(height: 20)

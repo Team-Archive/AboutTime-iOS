@@ -56,6 +56,7 @@ public struct FlowLayout: Layout {
     
     for index in subviews.indices {
       if lineWidth + cache.sizes[index].width > proposal.width ?? 0 {
+//        print("📐 proposal.width: \(proposal.width ?? -1)")
         totalHeight += lineHeight + lineSpacing // 줄 간격 추가
         lineWidth = cache.sizes[index].width
         lineHeight = cache.sizes[index].height
@@ -89,6 +90,7 @@ public struct FlowLayout: Layout {
       let projectedWidth = lineX + cache.sizes[index].width
       
       if projectedWidth > (proposal.width ?? .zero) - tolerance {
+//        print("📍 placing index: \(index), size: \(cache.sizes[index])")
         lineY += lineHeight + lineSpacing // 줄 간격 추가
         lineHeight = .zero
         lineX = bounds.minX
