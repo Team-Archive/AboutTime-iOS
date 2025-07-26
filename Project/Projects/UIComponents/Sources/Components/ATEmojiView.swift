@@ -12,7 +12,7 @@ import ArchiveFoundation
 
 public struct ATEmojiView: View {
   
-  private let resource: ExpressiveEmoji
+  private let resource: EmojiSelectable
   
   public var body: some View {
     AnimatedImage(name: resource.name, bundle: UIComponentsResources.bundle)
@@ -21,6 +21,10 @@ public struct ATEmojiView: View {
   }
   
   public init(resource: ExpressiveEmoji) {
+    self.resource = resource
+  }
+  
+  public init(resource: RecapEmoji) {
     self.resource = resource
   }
 }

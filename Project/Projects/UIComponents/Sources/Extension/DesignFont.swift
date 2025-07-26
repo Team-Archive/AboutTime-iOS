@@ -10,6 +10,7 @@ import SwiftUI
 import Foundation
 
 public enum ATFonts {
+  case title40
   case title28
   case title24
   case title20
@@ -28,6 +29,8 @@ public enum ATFonts {
 extension Font {
   public static func fonts(_ font: ATFonts) -> Font {
     switch font {
+    case .title40:
+      return .custom(FontDefine.FontType.bold.name, size: 40)
     case .title28:
       return .custom(FontDefine.FontType.bold.name, size: 28)
     case .title24:
