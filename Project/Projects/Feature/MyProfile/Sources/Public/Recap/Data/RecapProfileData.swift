@@ -12,10 +12,19 @@ import UIComponents
 
 public struct RecapProfileData: Sendable, Hashable {
   let imageURL: URL
+  let name: String
+  let count: Int
   let type: RecapProfileType
   
-  public init(imageURL: URL, type: RecapProfileType) {
+  public init(
+    imageURL: URL,
+    name: String,
+    count: Int,
+    type: RecapProfileType
+  ) {
     self.imageURL = imageURL
+    self.name = name
+    self.count = count
     self.type = type
   }
 }
@@ -46,6 +55,13 @@ public enum RecapProfileType: Sendable, Hashable {
     switch self {
     case .communicate: Gen.Images.recapHandshake.image
     case .reaction: Gen.Images.recapFoldedHands.image
+    }
+  }
+  
+  public func makeDescription(_ count: Int) -> String {
+    switch self {
+    case .communicate: "\(count)번의 소통"
+    case .reaction: "\(count)번의 리액션"
     }
   }
 }

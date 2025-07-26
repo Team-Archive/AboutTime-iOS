@@ -10,7 +10,6 @@ import Foundation
 import SwiftUI
 import UIComponents
 
-
 public struct RecapSmallCardView: View {
   
   let type: RecapCardType
@@ -153,5 +152,20 @@ public struct RecapSmallCardView: View {
         .foregroundStyle(Gen.Colors.purpleGray300.color)
     })
     .clipShape(RoundedRectangle(cornerRadius: 12))
+  }
+  
+  private func makeTitleGroup(titles: [String], highlightStrings: [String]) -> some View {
+    VStack(alignment: .leading) {
+      ForEach(titles, id: \.self) { title in
+        HighLightText(
+          text: title,
+          textColor: Gen.Colors.white.color,
+          font: .fonts(.title20),
+          highlightStrings: highlightStrings,
+          highlightColor: Gen.Colors.point.color,
+          highlightFont: .fonts(.title20)
+        )
+      }
+    }
   }
 }

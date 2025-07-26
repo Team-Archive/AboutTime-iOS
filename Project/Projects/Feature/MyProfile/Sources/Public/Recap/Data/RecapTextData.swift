@@ -9,13 +9,16 @@
 import Foundation
 import SwiftUI
 import UIComponents
+import ArchiveFoundation
 
 public struct RecapTextData: Sendable, Hashable {
   let content: String
+  let count: Int
   let type: RecapTextType
   
-  public init(content: String, type: RecapTextType) {
+  public init(content: String, count: Int, type: RecapTextType) {
     self.content = content
+    self.count = count
     self.type = type
   }
 }
@@ -52,6 +55,22 @@ public enum RecapTextType: Sendable, Hashable {
     case .timeRange: Gen.Images.recapClock.image
     case .day: Gen.Images.recapCalendar.image
     case .upload: Gen.Images.recapLetter.image
+    }
+  }
+  
+  public var emoji: RecapEmoji {
+    switch self {
+    case .timeRange: .eightOClock
+    case .day: .tearOffCalendar
+    case .upload: .loveLetter
+    }
+  }
+  
+  public func makeDescription(_ count: Int) -> String {
+    switch self {
+    case .timeRange: "\(count)번의 소통"
+    case .day: "\(count)번의 리액션"
+    case .upload: "\(count)번의 소통"
     }
   }
 }

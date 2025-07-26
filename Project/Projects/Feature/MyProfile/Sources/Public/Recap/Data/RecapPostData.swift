@@ -12,10 +12,12 @@ import UIComponents
 
 public struct RecapPostData: Sendable, Hashable {
   let imageURL: URL
+  let count: Int
   let type: RecapPostType
   
-  public init(imageURL: URL, type: RecapPostType) {
+  public init(imageURL: URL, count: Int, type: RecapPostType) {
     self.imageURL = imageURL
+    self.count = count
     self.type = type
   }
 }
@@ -40,6 +42,12 @@ public enum RecapPostType: Sendable, Hashable {
   public var icon: Image {
     switch self {
     case .reaction: Gen.Images.recapCamera.image
+    }
+  }
+  
+  public func makeDescription(_ count: Int) -> String {
+    switch self {
+    case .reaction: "\(count)번의 리액션"
     }
   }
 }
