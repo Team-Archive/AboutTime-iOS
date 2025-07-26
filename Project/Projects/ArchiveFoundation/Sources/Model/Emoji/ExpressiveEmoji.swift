@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum ExpressiveEmoji: CaseIterable {
+public enum ExpressiveEmoji: CaseIterable, EmojiSelectable {
   case clappingHands
   case faceWithTearsOfJoy
   case grinningFace
