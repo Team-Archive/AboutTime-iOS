@@ -148,7 +148,7 @@ public struct RecapSmallCardView: View {
     .background(Gen.Colors.purpleGray500.color)
     .overlay(content: {
       RoundedRectangle(cornerRadius: 12, style: .continuous)
-        .stroke(lineWidth: 2                                  )
+        .stroke(lineWidth: 2)
         .foregroundStyle(Gen.Colors.purpleGray300.color)
     })
     .clipShape(RoundedRectangle(cornerRadius: 12))
