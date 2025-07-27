@@ -1,8 +1,8 @@
 //
-//  RecapContentView.swift
+//  MyProfileRecapEntryView.swift
 //  MyProfile
 //
-//  Created by jinyoung on 7/21/25.
+//  Created by jinyoung on 7/28/25.
 //  Copyright © 2025 TeamArchive. All rights reserved.
 //
 
@@ -10,18 +10,18 @@ import Foundation
 import SwiftUI
 import UIComponents
 import ArchiveFoundation
-import MyProfile
 
-struct RecapContentView: View {
+public struct MyProfileRecapEntryView: View {
   @State private var currentCardIndex: Int = 0
   
-  let cards: [RecapCardType] = RecapCardType.mockData()
+  private let month: String
+  private let cards: [RecapCardType]
   
-  var body: some View {
+  public var body: some View {
     VStack {
       ATNavigationBar(
         type: .default(
-          title: "7월의 어바웃타임",
+          title: "\(month)의 어바웃타임",
           backAction: {},
           trailingAction: nil
         )
@@ -66,5 +66,11 @@ struct RecapContentView: View {
     .toolbar(.hidden)
   }
   
-  init() { }
+  public init(
+    month: String,
+    cards: [RecapCardType]
+  ) {
+    self.month = month
+    self.cards = cards
+  }
 }

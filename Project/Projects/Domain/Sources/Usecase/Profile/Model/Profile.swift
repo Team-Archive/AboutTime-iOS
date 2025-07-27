@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ArchiveFoundation
 
 public struct Profile: Equatable {
   public let userID: Int
@@ -23,5 +24,19 @@ public struct Profile: Equatable {
     self.region = region
     self.weather = weather
     self.imageURL = imageURL
+  }
+  
+  public static func mockData() -> Profile {
+    Profile(
+      userID: 1,
+      name: "수지",
+      time: "10:40 PM",
+      region: "🇨🇦 Montreal, Canada",
+      weather: ATWeather(
+        tag: .cloudy,
+        temperature: 21
+      ),
+      imageURL: MockImageURL.fetchData()
+    )
   }
 }
