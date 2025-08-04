@@ -54,8 +54,11 @@ public struct MyProfileEntryView: View {
           .navigationDestination(for: String.self) { value in
             if value == "profileEdit" {
               MyProfileEditView(
-                displayData: MyProfileEditDisplayData.mockData()
+                displayData: MyProfileEditDisplayData.mockData(),
+                path: $path
               )
+            } else if value == "nicknameEdit" {
+              MyProfileNickNameEditView()
             }
           }
           

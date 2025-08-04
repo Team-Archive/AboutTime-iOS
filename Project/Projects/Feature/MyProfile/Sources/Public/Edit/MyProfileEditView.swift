@@ -12,9 +12,14 @@ import ArchiveFoundation
 
 public struct MyProfileEditView: View {
   let displayData: MyProfileEditDisplayData
+  @Binding var path: NavigationPath
   
-  public init(displayData: MyProfileEditDisplayData) {
+  public init(
+    displayData: MyProfileEditDisplayData,
+    path: Binding<NavigationPath>
+  ) {
     self.displayData = displayData
+    self._path = path
   }
   
   public var body: some View {
@@ -58,7 +63,7 @@ public struct MyProfileEditView: View {
             trailing: Gen.Images.arrowRight24.image
           )
           .onTapGesture {
-            // TODO: 닉네임 수정 화면 이동
+            path.append("nicknameEdit")
           }
           
           ATDivider(type: .extreamSmall)
@@ -70,7 +75,7 @@ public struct MyProfileEditView: View {
             trailing: Gen.Images.arrowRight24.image
           )
           .onTapGesture {
-            // TODO: 도시 수정 화면 이동
+            path.append("cityEdit")
           }
           
           ATDivider(type: .extreamSmall)
@@ -82,7 +87,7 @@ public struct MyProfileEditView: View {
             trailing: Gen.Images.arrowRight24.image
           )
           .onTapGesture {
-            // TODO: 시간대 수정 화면 이동
+            path.append("timeEdit")
           }
         }
         .background(
