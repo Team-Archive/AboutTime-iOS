@@ -44,10 +44,20 @@ public struct MyProfileEntryView: View {
         VStack {
           ATNavigationBar(
             type: .default(
+              trailingIcon: Gen.Images.setting24.image,
               backAction: nil,
-              trailingAction: nil
+              trailingAction: {
+                path.append("profileEdit")
+              }
             )
           )
+          .navigationDestination(for: String.self) { value in
+            if value == "profileEdit" {
+              MyProfileEditView(
+                displayData: MyProfileEditDisplayData.mockData()
+              )
+            }
+          }
           
           ScrollViewReader { proxy in
             GeometryReader { geometry in
