@@ -1,0 +1,208 @@
+# 피그마 MCP 작업 규칙
+
+## 📋 기본 규칙
+
+### 1. Import 확인
+```swift
+import SwiftUI
+import UIComponents  // Gen 사용 시 필수!
+```
+
+### 2. 색상 매핑 규칙
+피그마에서 hex 값 추출 → 우리 `Gen.Colors`에 동일한 hex 값이 있는지 확인
+- **있으면** → `Gen.Colors.색상명.color` 사용
+- **없으면** → 반드시 ArchiveFoundation 패키지의 ColorExtension.swift 등에서 제공하는 hex 이니셜라이저를 import해서 사용한다. (직접 만들지 않는다!)
+- 중복 구현이 발견되면, 기존 코드를 ArchiveFoundation의 것으로 통일한다.
+
+### 3. 이미지 매핑 규칙
+피그마에서 이미지/아이콘 추출 → 우리 `Gen.Images`에 동일한 이미지가 있는지 확인
+- **있으면** → `Gen.Images.이미지명.image` 사용
+- **없으면** → 새 이미지 에셋 추가 또는 SF Symbols 사용
+
+### 4. 폰트 매핑 규칙
+피그마에서 폰트 크기/굵기 추출 → 우리 `ATFonts`에 맞는 스타일 매핑
+- **사용법**: `.font(.fonts(.스타일명))`
+
+### 5. lineHeight 규칙
+- **기본값 사용** (필요시 요청)
+
+## 🎨 색상 매핑 테이블
+
+### 기본 색상
+| Hex | Gen.Colors |
+|-----|------------|
+| `#000000` | `Gen.Colors.black.color` |
+| `#FEFEFF` | `Gen.Colors.white.color` |
+| `#FF2D2D` | `Gen.Colors.red.color` |
+| `#00D535` | `Gen.Colors.green.color` |
+| `#19E3FF` | `Gen.Colors.purple.color` |
+| `#19E3FF` | `Gen.Colors.point.color` |
+
+### Gray 계열
+| Hex | Gen.Colors |
+|-----|------------|
+| `#C2C2C2` | `Gen.Colors.gray200.color` |
+| `#9F9F9F` | `Gen.Colors.gray300.color` |
+| `#6F6F6F` | `Gen.Colors.gray600.color` |
+
+### PurpleGray 계열
+| Hex | Gen.Colors |
+|-----|------------|
+| `#7E7D8B` | `Gen.Colors.purpleGray50.color` |
+| `#565376` | `Gen.Colors.purpleGray100.color` |
+| `#3B3456` | `Gen.Colors.purpleGray200.color` |
+| `#302F3B` | `Gen.Colors.purpleGray300.color` |
+| `#302C40` | `Gen.Colors.purpleGray400.color` |
+| `#1E1D2D` | `Gen.Colors.purpleGray500.color` |
+
+### OAuth 색상
+| Hex | Gen.Colors |
+|-----|------------|
+| `#000000` | `Gen.Colors.apple.color` |
+| `#FFFFFF` | `Gen.Colors.google.color` |
+| `#1777F1` | `Gen.Colors.facebook.color` |
+
+### 그라데이션 색상
+| Hex | Gen.Colors |
+|-----|------------|
+| `#A852FF` | `Gen.Colors.gradationMainStart.color` |
+| `#4342D2` | `Gen.Colors.gradationMainEnd.color` |
+
+### 기타 색상
+| Hex | Gen.Colors |
+|-----|------------|
+| `#201B25` | `Gen.Colors.imageSelectBorder.color` |
+| `#292734` | `Gen.Colors.backgroundStart.color` |
+
+## 📝 폰트 매핑 테이블
+
+### ATFonts 사용법
+```swift
+.font(.fonts(.스타일명))
+```
+
+### 폰트 스타일
+| 크기/굵기 | ATFonts |
+|-----------|---------|
+| 40pt Bold | `.title40` |
+| 28pt Bold | `.title28` |
+| 24pt Bold | `.title24` |
+| 20pt Bold | `.title20` |
+| 16pt Bold | `.bodyBold16` |
+| 16pt Regular | `.body16` |
+| 14pt Bold | `.bodyBold14` |
+| 14pt Regular | `.body14` |
+| 13pt Regular | `.body13` |
+| 12pt Regular | `.body12` |
+| 14pt ExtraBold | `.buttonExtraBold14` |
+| 14pt SemiBold | `.buttonSemiBold14` |
+
+## 🧩 UIComponents 매칭 룰
+
+### 1. 버튼류
+- Figma: Btn, CTA, CTA btn/detail, btn/40, btn_Active/52, btn_disabled/52
+  - 적용: ATButton, ATBottomButton, ATBottomActionButton, ATSelectableButton, ATSignInButton
+- Figma: Toggle
+  - 적용: ATToggleStyle, ATSelectableButton
+
+### 2. 네비게이션/앱바
+- Figma: app bar, 상단바
+  - 적용: ATNavigationBar
+
+### 3. 입력/인풋
+- Figma: input, 텍스트 입력, 언더라인 인풋
+  - 적용: ATInputView, ATUnderlineInputView
+
+### 4. 이미지/프로필/썸네일
+- Figma: img, profile, cell/friend, friend
+  - 적용: ATUrlImage, ATDataImage, ATPHAssetImage, ATBadge, ATCheckImageButton
+
+### 5. 리스트/셀/카드
+- Figma: cell/friend, component/list/friend
+  - 적용: ATSelectableTextButton, ATSelectableEmojiButton, ATBadge, ATDivider, ATToast
+
+### 6. 이모지/리액션
+- Figma: emoji, status=emoji_selected/unselected/default
+  - 적용: ATEmojiView, ATEmojiExpressionView
+
+### 7. 하이라이트/텍스트 강조
+- Figma: 하이라이트 텍스트, 강조 텍스트
+  - 적용: HighLightText
+
+### 8. 구분선/Divider
+- Figma: divider, Property 1=divider, n
+  - 적용: ATDivider
+
+### 9. 그라데이션/배경
+- Figma: Gradient, 배경 그라데이션
+  - 적용: ATGradientView, ATBackgroundView
+
+### 10. 토스트/알림
+- Figma: toast/52, toast/68
+  - 적용: ATToast
+
+### 11. 툴팁/설명
+- Figma: Tooltip
+  - 적용: ATTooltip
+
+### 12. 페이지 인디케이터/스텝
+- Figma: page indicator, step progress
+  - 적용: ATPageIndicator, ATStepProgressView
+
+### 13. 레이아웃/정렬
+- Figma: FlowLayout, TagView 등
+  - 적용: FlowLayout, TagView
+
+---
+
+> Figma 컴포넌트와 UIComponents 매칭은 이 룰을 반드시 참고할 것! (중복/유사 컴포넌트 사용 금지)
+
+## 🔧 작업 순서
+
+1. **피그마 데이터 추출**
+   - 색상 hex 값들
+   - 이미지/아이콘 정보
+   - 폰트 크기/굵기
+   - 레이아웃 구조
+
+2. **Import 추가**
+   ```swift
+   import SwiftUI
+   import UIComponents
+   ```
+
+3. **색상 변환**
+   - 위 매핑 테이블에서 hex 값 찾기
+   - 있으면 Gen.Colors 사용, 없으면 hex 사용
+
+4. **이미지 변환**
+   - Gen.Images에서 동일한 이미지 찾기
+   - 있으면 Gen.Images 사용, 없으면 새 에셋 추가
+
+5. **폰트 변환**
+   - ATFonts에서 적절한 스타일 선택
+   - `.font(.fonts(.스타일명))` 사용
+
+6. **구조 구현**
+   - 피그마 레이아웃 구조 그대로 구현
+   - 정확한 크기, 간격, 패딩 적용
+
+## ✅ 검증 체크리스트
+
+- [ ] `import UIComponents` 추가됨
+- [ ] 색상이 Gen.Colors로 변환됨 (없는 경우만 hex 사용)
+- [ ] 이미지가 Gen.Images로 변환됨
+- [ ] 폰트가 ATFonts로 변환됨
+- [ ] 레이아웃 구조가 피그마와 일치함
+- [ ] 컴파일 에러 없음
+
+## 🚨 주의사항
+
+1. **Import 필수**: `Gen` 사용 시 반드시 `import UIComponents` 필요
+2. **색상 우선순위**: Gen.Colors → hex 순서로 확인
+3. **일관성 유지**: 같은 색상은 같은 Gen.Colors 사용
+4. **lineHeight**: 기본값 사용, 필요시 요청
+
+---
+
+*이 규칙은 AboutTime iOS 프로젝트의 디자인 시스템을 기반으로 작성되었습니다.* 
