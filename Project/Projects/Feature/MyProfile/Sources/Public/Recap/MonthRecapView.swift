@@ -20,10 +20,9 @@ public struct MonthRecapView: View {
   
   private let data: [RecapCardType]
   
+  @Binding private var path: NavigationPath
+  
   // MARK: - public properties
-  public var allButtonHandler: (() -> Void)?
-  
-  
   
   // MARK: - life cycle
   
@@ -44,7 +43,7 @@ public struct MonthRecapView: View {
           .font(.fonts(.buttonSemiBold14))
           .foregroundStyle(Gen.Colors.white.color)
           .onTapGesture {
-            allButtonHandler?()
+            path.append(MyProfileStep.recapAll)
           }
       }
       
@@ -56,6 +55,9 @@ public struct MonthRecapView: View {
           ForEach(data, id: \.self) { type in
             VStack {
               RecapSmallCardView(type: type)
+                .onTapGesture {
+                  path.append(MyProfileStep.recapAll)
+                }
             }
           }
         }
@@ -68,11 +70,11 @@ public struct MonthRecapView: View {
   public init(
     month: String,
     data: [RecapCardType],
-    allButtonHandler: (() -> Void)?
+    path: Binding<NavigationPath>
   ) {
     self.month = month
     self.data = data
-    self.allButtonHandler = allButtonHandler
+    self._path = path
   }
   
   // MARK: - private method

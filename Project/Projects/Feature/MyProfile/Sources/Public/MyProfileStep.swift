@@ -8,9 +8,11 @@
 
 import Foundation
 
-public enum MyProfileStep: String {
+public enum MyProfileStep {
   /// 프로필 편집
   case profileEdit
+  /// 프로필 편집 > 프로필 사진 변경
+  case profileImageEdit
   /// 프로필 편집 > 닉네임 변경
   case nicknameEdit
   /// 프로필 편집 > 도시 변경

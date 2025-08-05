@@ -11,10 +11,15 @@ import UIComponents
 import ArchiveFoundation
 
 public struct MyProfileNickNameEditView: View {
+  
   @State private var nickname: String = "수지"
   
-  public init() {
-    
+  @Binding private var path: NavigationPath
+  
+  public init(
+    path: Binding<NavigationPath>
+  ) {
+    self._path = path
   }
   
   public var body: some View {
@@ -26,7 +31,9 @@ public struct MyProfileNickNameEditView: View {
           type: .default(
             title: "닉네임 수정",
             trailingIcon: nil,
-            backAction: nil,
+            backAction: {
+              path.removeLast()
+            },
             trailingAction: nil
           )
         )
@@ -67,9 +74,4 @@ public struct MyProfileNickNameEditView: View {
     }
     .toolbar(.hidden)
   }
-}
-
-// MARK: - Preview
-#Preview {
-  MyProfileNickNameEditView()
 }

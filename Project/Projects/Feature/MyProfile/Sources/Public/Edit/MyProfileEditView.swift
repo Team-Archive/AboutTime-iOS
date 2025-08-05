@@ -11,8 +11,10 @@ import UIComponents
 import ArchiveFoundation
 
 public struct MyProfileEditView: View {
-  let displayData: MyProfileEditData
-  @Binding var path: NavigationPath
+  
+  private let displayData: MyProfileEditData
+  
+  @Binding private var path: NavigationPath
   
   public init(
     displayData: MyProfileEditData,
@@ -31,7 +33,9 @@ public struct MyProfileEditView: View {
           type: .default(
             title: "프로필 변경",
             trailingIcon: nil,
-            backAction: nil,
+            backAction: {
+              path.removeLast()
+            },
             trailingAction: nil
           )
         )
@@ -47,7 +51,7 @@ public struct MyProfileEditView: View {
             icon: Gen.Images.gallery.image,
             backgroundColor: Gen.Colors.point.color,
             action: {
-              // TODO: 프로필 이미지 수정 화면 이동
+              path.append(MyProfileStep.profileImageEdit)
             }
           )
           .frame(width: 44, height: 44)
@@ -63,7 +67,7 @@ public struct MyProfileEditView: View {
             trailing: Gen.Images.arrowRight24.image
           )
           .onTapGesture {
-            path.append(MyProfileStep.nicknameEdit.rawValue)
+            path.append(MyProfileStep.nicknameEdit)
           }
           
           ATDivider(type: .extreamSmall)
@@ -75,7 +79,7 @@ public struct MyProfileEditView: View {
             trailing: Gen.Images.arrowRight24.image
           )
           .onTapGesture {
-            path.append(MyProfileStep.cityEdit.rawValue)
+            path.append(MyProfileStep.cityEdit)
           }
           
           ATDivider(type: .extreamSmall)
@@ -87,7 +91,7 @@ public struct MyProfileEditView: View {
             trailing: Gen.Images.arrowRight24.image
           )
           .onTapGesture {
-            path.append(MyProfileStep.preferenceTimeEdit.rawValue)
+            path.append(MyProfileStep.preferenceTimeEdit)
           }
         }
         .background(

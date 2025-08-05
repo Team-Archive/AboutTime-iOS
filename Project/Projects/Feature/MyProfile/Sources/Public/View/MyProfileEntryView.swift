@@ -47,7 +47,7 @@ public struct MyProfileEntryView: View {
               trailingIcon: Gen.Images.setting24.image,
               backAction: nil,
               trailingAction: {
-                path.append(MyProfileStep.profileEdit.rawValue)
+                path.append(MyProfileStep.profileEdit)
               }
             )
           )
@@ -59,15 +59,14 @@ public struct MyProfileEntryView: View {
                   MyProfileHeaderView(
                     Profile.mockData()
                   ) {
-                    path.append(MyProfileStep.profileEdit.rawValue)
+                    path.append(MyProfileStep.profileEdit)
                   }
                   
                   MonthRecapView(
                     month: "7월",
-                    data: RecapCardType.mockData()
-                  ) {
-                    path.append(MyProfileStep.recapAll.rawValue)
-                  }
+                    data: RecapCardType.mockData(),
+                    path: $path
+                  )
                   
                   Spacer()
                     .frame(height: 20)
@@ -110,15 +109,19 @@ public struct MyProfileEntryView: View {
           }
         }
       }
-      .navigationDestination(for: String.self) { value in
-        switch MyProfileStep(rawValue: value) {
+      .navigationDestination(for: MyProfileStep.self) { step in
+        switch step {
         case .profileEdit:
           MyProfileEditView(
             displayData: MyProfileEditData.mockData(),
             path: $path
           )
+        case .profileImageEdit:
+          EmptyView()
         case .nicknameEdit:
-          MyProfileNickNameEditView()
+          MyProfileNickNameEditView(
+            path: $path
+          )
         case .cityEdit:
           EmptyView()
         case .preferenceTimeEdit:
@@ -126,10 +129,9 @@ public struct MyProfileEntryView: View {
         case .recapAll:
           MyProfileRecapEntryView(
             month: "7월",
-            cards: RecapCardType.mockData()
+            cards: RecapCardType.mockData(),
+            path: $path
           )
-        default:
-          EmptyView()
         }
       }
     }
