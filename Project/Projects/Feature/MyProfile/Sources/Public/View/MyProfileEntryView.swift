@@ -114,7 +114,7 @@ public struct MyProfileEntryView: View {
         switch MyProfileStep(rawValue: value) {
         case .profileEdit:
           MyProfileEditView(
-            displayData: MyProfileEditDisplayData.mockData(),
+            displayData: MyProfileEditData.mockData(),
             path: $path
           )
         case .nicknameEdit:

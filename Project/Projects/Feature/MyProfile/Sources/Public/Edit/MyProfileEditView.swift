@@ -11,11 +11,11 @@ import UIComponents
 import ArchiveFoundation
 
 public struct MyProfileEditView: View {
-  let displayData: MyProfileEditDisplayData
+  let displayData: MyProfileEditData
   @Binding var path: NavigationPath
   
   public init(
-    displayData: MyProfileEditDisplayData,
+    displayData: MyProfileEditData,
     path: Binding<NavigationPath>
   ) {
     self.displayData = displayData
@@ -101,35 +101,5 @@ public struct MyProfileEditView: View {
       }
     }
     .toolbar(.hidden)
-  }
-}
-
-public struct MyProfileEditDisplayData {
-  let nickname: String
-  let city: String
-  let timeRange: String
-  let profileImageURL: URL?
-  
-  public init(
-    nickname: String,
-    city: String,
-    timeRange: String,
-    profileImageURL: URL?
-  ) {
-    self.nickname = nickname
-    self.city = city
-    self.timeRange = timeRange
-    self.profileImageURL = profileImageURL
-  }
-  
-  public static func mockData() -> Self {
-    MyProfileEditDisplayData(
-      nickname: "수지",
-      city: "🇨🇦 Montreal, Canada",
-      timeRange: "오후 9시 ~ 오전 1시",
-      profileImageURL: MockImageURL.fetchDatas(
-        with: 1
-      ).first!
-    )
   }
 }
