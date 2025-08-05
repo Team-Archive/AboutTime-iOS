@@ -63,7 +63,7 @@ public struct MyProfileEditView: View {
             trailing: Gen.Images.arrowRight24.image
           )
           .onTapGesture {
-            path.append("nicknameEdit")
+            path.append(MyProfileStep.nicknameEdit.rawValue)
           }
           
           ATDivider(type: .extreamSmall)
@@ -75,7 +75,7 @@ public struct MyProfileEditView: View {
             trailing: Gen.Images.arrowRight24.image
           )
           .onTapGesture {
-            path.append("cityEdit")
+            path.append(MyProfileStep.cityEdit.rawValue)
           }
           
           ATDivider(type: .extreamSmall)
@@ -87,7 +87,7 @@ public struct MyProfileEditView: View {
             trailing: Gen.Images.arrowRight24.image
           )
           .onTapGesture {
-            path.append("timeEdit")
+            path.append(MyProfileStep.preferenceTimeEdit.rawValue)
           }
         }
         .background(

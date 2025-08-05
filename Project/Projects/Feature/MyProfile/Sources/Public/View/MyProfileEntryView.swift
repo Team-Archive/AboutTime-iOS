@@ -47,20 +47,10 @@ public struct MyProfileEntryView: View {
               trailingIcon: Gen.Images.setting24.image,
               backAction: nil,
               trailingAction: {
-                path.append("profileEdit")
+                path.append(MyProfileStep.profileEdit.rawValue)
               }
             )
           )
-          .navigationDestination(for: String.self) { value in
-            if value == "profileEdit" {
-              MyProfileEditView(
-                displayData: MyProfileEditDisplayData.mockData(),
-                path: $path
-              )
-            } else if value == "nicknameEdit" {
-              MyProfileNickNameEditView()
-            }
-          }
           
           ScrollViewReader { proxy in
             GeometryReader { geometry in
@@ -69,22 +59,14 @@ public struct MyProfileEntryView: View {
                   MyProfileHeaderView(
                     Profile.mockData()
                   ) {
-                      print("profile edit clicked")
-                    }
+                    path.append(MyProfileStep.profileEdit.rawValue)
+                  }
                   
                   MonthRecapView(
                     month: "7월",
                     data: RecapCardType.mockData()
                   ) {
-                    path.append("recapAll")
-                  }
-                  .navigationDestination(for: String.self) { value in
-                    if value == "recapAll" {
-                      MyProfileRecapEntryView(
-                        month: "7월",
-                        cards: RecapCardType.mockData()
-                      )
-                    }
+                    path.append(MyProfileStep.recapAll.rawValue)
                   }
                   
                   Spacer()
@@ -126,6 +108,28 @@ public struct MyProfileEntryView: View {
               }
             }
           }
+        }
+      }
+      .navigationDestination(for: String.self) { value in
+        switch MyProfileStep(rawValue: value) {
+        case .profileEdit:
+          MyProfileEditView(
+            displayData: MyProfileEditDisplayData.mockData(),
+            path: $path
+          )
+        case .nicknameEdit:
+          MyProfileNickNameEditView()
+        case .cityEdit:
+          EmptyView()
+        case .preferenceTimeEdit:
+          EmptyView()
+        case .recapAll:
+          MyProfileRecapEntryView(
+            month: "7월",
+            cards: RecapCardType.mockData()
+          )
+        default:
+          EmptyView()
         }
       }
     }
