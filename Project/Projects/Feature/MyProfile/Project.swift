@@ -24,6 +24,10 @@ let project = Project.makeFeature(
       target: "Calendar",
       path: "../Calendar"
     ),
+    .project(
+      target: "Album",
+      path: "../Album"
+    ),
     .tca,
     .swiftyJSON
   ],

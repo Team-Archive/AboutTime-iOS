@@ -13,6 +13,7 @@ import ArchiveFoundation
 
 public struct MyProfileRecapEntryView: View {
   @State private var currentCardIndex: Int = 0
+  @Binding private var path: NavigationPath
   
   private let month: String
   private let cards: [RecapCardType]
@@ -22,7 +23,9 @@ public struct MyProfileRecapEntryView: View {
       ATNavigationBar(
         type: .default(
           title: "\(month)의 어바웃타임",
-          backAction: {},
+          backAction: {
+            path.removeLast()
+          },
           trailingAction: nil
         )
       )
@@ -68,9 +71,11 @@ public struct MyProfileRecapEntryView: View {
   
   public init(
     month: String,
-    cards: [RecapCardType]
+    cards: [RecapCardType],
+    path: Binding<NavigationPath>
   ) {
     self.month = month
     self.cards = cards
+    self._path = path
   }
 }

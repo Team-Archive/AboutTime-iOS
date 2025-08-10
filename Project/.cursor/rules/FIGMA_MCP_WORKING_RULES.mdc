@@ -49,10 +49,10 @@ import UIComponents  // Gen 사용 시 필수!
 | Hex | Gen.Colors |
 |-----|------------|
 | `#7E7D8B` | `Gen.Colors.purpleGray50.color` |
-| `#565376` | `Gen.Colors.purpleGray100.color` |
-| `#3B3456` | `Gen.Colors.purpleGray200.color` |
+| `#636276` | `Gen.Colors.purpleGray100.color` |
+| `#484757` | `Gen.Colors.purpleGray200.color` |
 | `#302F3B` | `Gen.Colors.purpleGray300.color` |
-| `#302C40` | `Gen.Colors.purpleGray400.color` |
+| `#262634` | `Gen.Colors.purpleGray400.color` |
 | `#1E1D2D` | `Gen.Colors.purpleGray500.color` |
 
 ### OAuth 색상

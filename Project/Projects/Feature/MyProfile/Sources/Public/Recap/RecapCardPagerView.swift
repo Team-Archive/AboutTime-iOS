@@ -16,7 +16,7 @@ public struct RecapCardPagerView: View {
   private enum Metric {
     static let width: CGFloat = 280
     static let height: CGFloat = 420
-    static let spacing: CGFloat = 16
+    static let spacing: CGFloat = 20
   }
   
   public var body: some View {

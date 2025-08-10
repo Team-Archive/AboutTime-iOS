@@ -44,8 +44,11 @@ public struct MyProfileEntryView: View {
         VStack {
           ATNavigationBar(
             type: .default(
+              trailingIcon: Gen.Images.setting24.image,
               backAction: nil,
-              trailingAction: nil
+              trailingAction: {
+                path.append(MyProfileStep.profileEdit)
+              }
             )
           )
           
@@ -56,23 +59,14 @@ public struct MyProfileEntryView: View {
                   MyProfileHeaderView(
                     Profile.mockData()
                   ) {
-                      print("profile edit clicked")
-                    }
+                    path.append(MyProfileStep.profileEdit)
+                  }
                   
                   MonthRecapView(
                     month: "7월",
-                    data: RecapCardType.mockData()
-                  ) {
-                    path.append("recapAll")
-                  }
-                  .navigationDestination(for: String.self) { value in
-                    if value == "recapAll" {
-                      MyProfileRecapEntryView(
-                        month: "7월",
-                        cards: RecapCardType.mockData()
-                      )
-                    }
-                  }
+                    data: RecapCardType.mockData(),
+                    path: $path
+                  )
                   
                   Spacer()
                     .frame(height: 20)
@@ -113,6 +107,29 @@ public struct MyProfileEntryView: View {
               }
             }
           }
+        }
+      }
+      .navigationDestination(for: MyProfileStep.self) { step in
+        switch step {
+        case .profileEdit:
+          MyProfileEditView(
+            displayData: MyProfileEditData.mockData(),
+            path: $path
+          )
+        case .nicknameEdit:
+          MyProfileNickNameEditView(
+            path: $path
+          )
+        case .cityEdit:
+          EmptyView()
+        case .preferenceTimeEdit:
+          EmptyView()
+        case .recapAll:
+          MyProfileRecapEntryView(
+            month: "7월",
+            cards: RecapCardType.mockData(),
+            path: $path
+          )
         }
       }
     }
