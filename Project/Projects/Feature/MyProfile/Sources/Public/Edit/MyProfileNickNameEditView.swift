@@ -37,7 +37,6 @@ public struct MyProfileNickNameEditView: View {
             trailingAction: nil
           )
         )
-        .padding(.top, 8)
         
         Spacer().frame(height: 40)
         

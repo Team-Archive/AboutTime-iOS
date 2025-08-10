@@ -9,12 +9,16 @@
 import SwiftUI
 import UIComponents
 import ArchiveFoundation
+import Album
+import Domain
 
 public struct MyProfileEditView: View {
   
   private let displayData: MyProfileEditData
   
   @Binding private var path: NavigationPath
+  
+  @State private var isShowProfileImageEdit: Bool = false
   
   public init(
     displayData: MyProfileEditData,
@@ -51,7 +55,7 @@ public struct MyProfileEditView: View {
             icon: Gen.Images.gallery.image,
             backgroundColor: Gen.Colors.point.color,
             action: {
-              path.append(MyProfileStep.profileImageEdit)
+              isShowProfileImageEdit = true
             }
           )
           .frame(width: 44, height: 44)
@@ -105,5 +109,18 @@ public struct MyProfileEditView: View {
       }
     }
     .toolbar(.hidden)
+    .fullScreenCover(isPresented: $isShowProfileImageEdit) {
+      AlbumView(
+        reducer: AlbumReducer(
+          albumType: .single(navigationTitle: "프로필 사진 변경", completeButtonTitle: "완료"),
+          albumUsecase: AlbumUsecaseImplement(recentAlbumName: "최근", favoriteAlbumName: "즐겨찾는 항목")
+        ),
+        complete: { imageList in
+          isShowProfileImageEdit = false
+        },
+        close: {
+          isShowProfileImageEdit = false
+        })
+    }
   }
 }

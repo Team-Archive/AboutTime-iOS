@@ -116,8 +116,6 @@ public struct MyProfileEntryView: View {
             displayData: MyProfileEditData.mockData(),
             path: $path
           )
-        case .profileImageEdit:
-          EmptyView()
         case .nicknameEdit:
           MyProfileNickNameEditView(
             path: $path
