@@ -20,7 +20,8 @@ let project = Project.app(
     .feature(target: "Onboarding", directoryName: "Onboarding"),
     .feature(target: "Album", directoryName: "Album"),
     .feature(target: "OAuthApple", directoryName: "OAuthApple"),
-    .feature(target: "OAuthGoogle", directoryName: "OAuthGoogle")
+    .feature(target: "OAuthGoogle", directoryName: "OAuthGoogle"),
+    .feature(target: "Home", directoryName: "Home")
   ],
   additionalTargets: [],
   additionalSourcePaths: [],

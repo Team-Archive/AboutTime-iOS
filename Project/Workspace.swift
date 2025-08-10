@@ -24,6 +24,7 @@ let workspace = Workspace(
     "Projects/Feature/Calendar",
     "Projects/Feature/MyProfile",
     "Projects/Feature/OAuthApple",
-    "Projects/Feature/OAuthGoogle"
+    "Projects/Feature/OAuthGoogle",
+    "Projects/Feature/Home"
   ]
 )
