@@ -7,27 +7,15 @@
 //
 
 import SwiftUI
+import ArchiveFoundation
 
 public struct ATWeatherTagView: View {
-  
-  public enum Weather {
-    case cloudy
-    
-    var icon: Image {
-      switch self {
-      case .cloudy:
-        return Gen.Images.cloudy.image
-      }
-    }
-  }
-  
   // MARK: - public state
   
   // MARK: - private properties
   
   private let designType: ATTagView.DesignType
   private let weather: Weather
-  private let temperature: Float
   
   // MARK: - public properties
   
@@ -37,20 +25,18 @@ public struct ATWeatherTagView: View {
     
     ATTagView(
       designType: self.designType,
-      icon: self.weather.icon,
-      title: "\(String(format: "%.1f", self.temperature))°C"
+      icon: self.weather.tag.icon,
+      title: "\(String(format: "%.1f", self.weather.temperature))°C"
     )
     
   }
   
   public init(
     designType: ATTagView.DesignType = .primary,
-    weather: Weather,
-    temperature: Float
+    weather: Weather
   ) {
     self.designType = designType
     self.weather = weather
-    self.temperature = temperature
   }
   
   // MARK: - private method

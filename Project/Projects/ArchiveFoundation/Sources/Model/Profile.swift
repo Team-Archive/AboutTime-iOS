@@ -7,17 +7,23 @@
 //
 
 import Foundation
-import ArchiveFoundation
 
 public struct Profile: Equatable {
   public let userID: Int
   public let name: String
   public let time: String
   public let region: String
-  public let weather: ATWeather
+  public let weather: Weather
   public let imageURL: URL?
   
-  public init(userID: Int, name: String, time: String, region: String, weather: ATWeather, imageURL: URL?) {
+  public init(
+    userID: Int,
+    name: String,
+    time: String,
+    region: String,
+    weather: Weather,
+    imageURL: URL?
+  ) {
     self.userID = userID
     self.name = name
     self.time = time
@@ -32,7 +38,7 @@ public struct Profile: Equatable {
       name: "수지",
       time: "10:40 PM",
       region: "🇨🇦 Montreal, Canada",
-      weather: ATWeather(
+      weather: Weather(
         tag: .cloudy,
         temperature: 21
       ),

@@ -15,13 +15,13 @@ public struct PostItemData: Sendable {
   public let imageList: [ATGridImageView.ATGridImageItem]
   public let emojiList: [ATEmojiExpressionData]
   public let dateText: String
-  public let weatherData: ATWeather
+  public let weatherData: Weather
 
   public init(
     imageList: [ATGridImageView.ATGridImageItem],
     emojiList: [ATEmojiExpressionData],
     dateText: String,
-    weatherData: ATWeather
+    weatherData: Weather
   ) {
     self.imageList = imageList
     self.emojiList = emojiList
@@ -74,8 +74,7 @@ public struct PostItemView: View {
         // TODO: Weather 뷰 디자인 반영 필요
         ATWeatherTagView(
           designType: .primary,
-          weather: data.weatherData.tag.convertToTag(),
-          temperature: data.weatherData.temperature
+          weather: data.weatherData
         )
         
         Spacer()
@@ -88,16 +87,6 @@ public struct PostItemView: View {
       ) {
         print("Tap Add Button")
       }
-    }
-  }
-}
-
-// TODO: 임시
-extension ATWeatherTag {
-  func convertToTag() -> ATWeatherTagView.Weather {
-    switch self {
-    case .cloudy:
-      return .cloudy
     }
   }
 }

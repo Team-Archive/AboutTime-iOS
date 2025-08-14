@@ -9,6 +9,7 @@
 import SwiftUI
 import Domain
 import UIComponents
+import ArchiveFoundation
 
 public struct MyProfileHeaderView: View {
   // MARK: - public state
@@ -49,8 +50,7 @@ public struct MyProfileHeaderView: View {
           
           ATWeatherTagView(
             designType: .primary,
-            weather: profile.weather.tag.convertToTag(),
-            temperature: profile.weather.temperature
+            weather: profile.weather
           )
         }
       }
@@ -72,15 +72,5 @@ public struct MyProfileHeaderView: View {
     }
     .padding(.horizontal, 20)
     .frame(height: 68)
-  }
-}
-
-// TODO: 임시
-extension ATWeatherTag {
-  func convertToTag() -> ATWeatherTagView.Weather {
-    switch self {
-    case .cloudy:
-      return .cloudy
-    }
   }
 }

@@ -154,8 +154,8 @@ struct ContentView: View {
               ))
             ATTagView(icon: .init(systemName: "bolt"), title: "ATTagView")
             ATTagView(icon: nil, title: "ATTagView")
-            ATWeatherTagView(weather: .cloudy, temperature: 5.5)
-            ATWeatherTagView(designType: .secondary, weather: .cloudy, temperature: 5.5)
+            ATWeatherTagView(weather: Weather(tag: .cloudy, temperature: 5.5))
+            ATWeatherTagView(designType: .secondary, weather: Weather(tag: .cloudy, temperature: 5.5))
             ATDateTagView(date: Date())
             ATSegmentedDynamicControlView(segmentTitleList: ["Test11111111", "Test2"])
             ATSegmentedStaticControlView(segmentItemList: [
