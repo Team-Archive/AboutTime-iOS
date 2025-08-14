@@ -82,11 +82,11 @@ class StubSignInRepositoryImplement: SignInRepository {
 }
 
 struct StubSignUpView: View, ServiceSignInDelegator {
-  
   var closeAction: (() -> Void)
   var completeAction: ((SignInToken) -> Void)
   
   init(
+    oauthSignInData: OAuthSignInData,
     completeAction: @escaping (SignInToken) -> Void,
     closeAction: @escaping () -> Void
   ) {
