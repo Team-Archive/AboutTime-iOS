@@ -8,6 +8,7 @@
 
 import SwiftUI
 import UIKit
+import ArchiveFoundation
 
 public struct ATPageIndicator: UIViewRepresentable {
   var numberOfPages: Int

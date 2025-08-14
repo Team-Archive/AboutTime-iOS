@@ -8,7 +8,6 @@
 
 import Foundation
 import ArchiveFoundation
-import UIComponents
 import Domain
 
 // TODO: 추후 API 연동 필요
@@ -26,6 +25,7 @@ public final class CalendarRepositoryImpl: CalendarRepository {
       L10n.Localizable.commonShortThursday,
       L10n.Localizable.commonShortFriday,
       L10n.Localizable.commonShortSaturday
+      
     ]
     
     return weekDay

@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import ArchiveFoundation
 import UIComponents
 
 struct AlbumNotPermittedView: View {

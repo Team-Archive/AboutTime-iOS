@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import ArchiveFoundation
 
 public struct ATNavigationBar: View {
   public enum ATNavigationBarType {

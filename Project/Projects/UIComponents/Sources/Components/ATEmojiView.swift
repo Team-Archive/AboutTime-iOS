@@ -15,7 +15,7 @@ public struct ATEmojiView: View {
   private let resource: EmojiSelectable
   
   public var body: some View {
-    AnimatedImage(name: resource.name, bundle: UIComponentsResources.bundle)
+    AnimatedImage(name: resource.name, bundle: ArchiveFoundationResources.bundle)
     .resizable()
     .scaledToFit()
   }

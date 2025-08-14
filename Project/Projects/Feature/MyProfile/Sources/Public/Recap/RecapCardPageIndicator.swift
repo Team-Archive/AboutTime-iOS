@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftUI
+import ArchiveFoundation
 import UIComponents
 
 public struct RecapCardPageIndicator: View {

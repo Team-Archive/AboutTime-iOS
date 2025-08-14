@@ -6,6 +6,7 @@
 //  Copyright © 2024 TeamArchive. All rights reserved.
 //
 import SwiftUI
+import ArchiveFoundation
 
 public struct ATBadge: View {
   
