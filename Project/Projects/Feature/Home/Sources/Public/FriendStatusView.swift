@@ -11,42 +11,6 @@ import UIComponents
 import ArchiveFoundation
 import Domain
 
-public struct FriendStatusData: Sendable {
-  public let name: String
-  public let location: String
-  public let weather: Weather
-  public let timeText: String
-  public let meridiemText: String
-  public let dateText: String
-
-  public init(
-    name: String,
-    location: String,
-    weather: Weather,
-    timeText: String,
-    meridiemText: String,
-    dateText: String
-  ) {
-    self.name = name
-    self.location = location
-    self.weather = weather
-    self.timeText = timeText
-    self.meridiemText = meridiemText
-    self.dateText = dateText
-  }
-  
-  public static func mockData() -> Self {
-    FriendStatusData(
-      name: "Josepjus Adolphus",
-      location: "🇫🇷 Paris, France",
-      weather: Weather(tag: .cloudy, temperature: 17.6),
-      timeText: "7:14",
-      meridiemText: "PM",
-      dateText: "4월 30일 토요일"
-    )
-  }
-}
-
 public struct FriendStatusView: View {
 
   // MARK: - Public Properties
@@ -60,7 +24,6 @@ public struct FriendStatusView: View {
   // MARK: - Body
   public var body: some View {
     ZStack {
-      // Background gradient per Figma node (#3519D1 -> #CE4E3A), rounded 24, shadow
       RoundedRectangle(cornerRadius: 24, style: .continuous)
         .fill(
           LinearGradient(
@@ -72,17 +35,15 @@ public struct FriendStatusView: View {
             endPoint: .bottom
           )
         )
-        .shadow(color: .black.opacity(0.1), radius: 20, x: 0, y: 9)
       
       HStack(spacing: 0) {
         HStack(spacing: 8) {
-          ZStack {
-            Circle()
-              .fill(Gen.Colors.white.color.opacity(0.2))
-            Image(systemName: "person.fill")
-              .foregroundStyle(Gen.Colors.white.color)
-              .font(.system(size: 28, weight: .semibold))
-          }
+          ATUrlImage(
+            url: data.imageURL,
+            placeholder: Gen.Images.setProfilePlaceholder.image
+          )
+          .aspectRatio(contentMode: .fill)
+          .clipShape(.circle)
           .frame(width: 66, height: 66)
           
           VStack(alignment: .leading, spacing: 4) {
@@ -99,15 +60,15 @@ public struct FriendStatusView: View {
             HStack(spacing: 2) {
               data.weather.tag.icon
                 .foregroundStyle(Gen.Colors.white.color)
-                .font(.system(size: 12, weight: .semibold))
+                .font(.fonts(.body12))
                 .frame(width: 16, height: 16, alignment: .center)
               
-              Text("\(data.weather.temperature)°")
+              Text(data.weather.temperatureString)
                 .font(.fonts(.body13))
                 .foregroundStyle(Gen.Colors.white.color)
             }
           }
-        }
+        }.layoutPriority(1)
         
         Spacer(minLength: 0)
         
@@ -116,12 +77,12 @@ public struct FriendStatusView: View {
             Text(data.time.hhmm)
               .font(.fonts(.title28))
               .foregroundStyle(Gen.Colors.white.color)
-            Text("PM")
+            Text(data.time.meridiem)
               .font(.fonts(.body14))
               .foregroundStyle(Gen.Colors.white.color)
           }
           
-          Text("Saturday, Mar 30")
+          Text(data.time.weekdayMonthDay)
             .font(.fonts(.body13))
             .foregroundStyle(Gen.Colors.white.color)
         }

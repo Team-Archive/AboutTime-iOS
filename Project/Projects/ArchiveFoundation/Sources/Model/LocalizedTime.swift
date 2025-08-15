@@ -39,6 +39,11 @@ public struct LocalizedTime: Sendable, Equatable {
     formatted("yyyy.MM.dd")
   }
   
+  /// 요일 + 월 + 일 → "Saturday, Mar 30" or "토요일, 3월 30일"
+  public var weekdayMonthDay: String {
+      formatted("EEEE, MMM d")
+  }
+  
   /// AM/PM → "오전" or "PM"
   public var meridiem: String {
     formatted("a")
