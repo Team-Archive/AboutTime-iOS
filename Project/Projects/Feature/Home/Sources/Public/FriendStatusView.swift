@@ -113,7 +113,7 @@ public struct FriendStatusView: View {
         
         VStack(alignment: .trailing, spacing: 4) {
           HStack(alignment: .firstTextBaseline, spacing: 4) {
-            Text(data.time)
+            Text(data.time.hhmm)
               .font(.fonts(.title28))
               .foregroundStyle(Gen.Colors.white.color)
             Text("PM")

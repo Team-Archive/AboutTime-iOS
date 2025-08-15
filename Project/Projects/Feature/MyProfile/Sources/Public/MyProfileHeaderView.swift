@@ -39,7 +39,7 @@ public struct MyProfileHeaderView: View {
           .font(.fonts(.bodyBold16))
           .foregroundStyle(Gen.Colors.white.color)
         
-        Text(profile.time)
+        Text("\(profile.time.hhmm) \(profile.time.meridiem)")
           .font(.fonts(.body14))
           .foregroundStyle(Gen.Colors.white.color)
         
