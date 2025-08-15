@@ -17,6 +17,10 @@ extension Project {
     return Project(
       name: name,
       organizationName: Project.organizationName,
+      options: .options(
+        defaultKnownRegions: ["en", "ko"],
+        developmentRegion: "ko"
+      ),
       packages: [],
       targets: Project.dynamicFrameworkTargets(
         name: name,
