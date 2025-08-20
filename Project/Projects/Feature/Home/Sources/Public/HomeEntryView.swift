@@ -13,7 +13,22 @@ import UIComponents
 
 public struct HomeEntryView: View {
   
+  private enum HomeSegmentControlType: Int {
+    case feed
+    case time
+    
+    var title: String {
+      switch self {
+      case .feed:
+        return "피드"
+      case .time:
+        return "시간"
+      }
+    }
+  }
+  
   @State var isToggleOn: Bool = false
+  @State private var selectedSegment: HomeSegmentControlType = .feed
   
   private let mockProfiles = Profile.mockDatas(currentTime: Date().timeIntervalSince1970)
   
@@ -29,14 +44,14 @@ public struct HomeEntryView: View {
       VStack(spacing: 12) {
         HStack(spacing: 8) {
           ATSegmentedDynamicControlView(
-            segmentTitleList: [
-              "피드",
-              "시간"
-            ]
+            segmentTitleList: [HomeSegmentControlType.feed.title, HomeSegmentControlType.time.title],
+            selectedSegmentIndex: Binding(
+              get: { selectedSegment.rawValue },
+              set: { selectedSegment = HomeSegmentControlType(rawValue: $0) ?? .feed }
+            )
           )
           
           Spacer()
-          
           
           Gen.Images.alert24.image
             .frame(width: 24, height: 24)
@@ -68,9 +83,14 @@ public struct HomeEntryView: View {
               )
             }
             
-            VStack(spacing: 8) {
-              ForEach(mockProfiles, id: \.userID) { profile in
-                FriendStatusView(data: profile)
+            switch selectedSegment {
+            case .feed:
+              Spacer()
+            case .time:
+              VStack(spacing: 8) {
+                ForEach(mockProfiles, id: \.userID) { profile in
+                  FriendStatusView(data: profile)
+                }
               }
             }
             

@@ -13,7 +13,7 @@ public struct ATSegmentedDynamicControlView: View {
   
   // MARK: - public state
   
-  @State private(set) var selectedSegmentIndex: Int = 0
+  @Binding var selectedSegmentIndex: Int
   
   // MARK: - private properties
   
@@ -66,10 +66,12 @@ public struct ATSegmentedDynamicControlView: View {
   
   public init(
     segmentTitleList: [String],
+    selectedSegmentIndex: Binding<Int>,
     height: CGFloat = 36
   ) {
     self.segmentTitleList = segmentTitleList
     self.height = height
+    self._selectedSegmentIndex = selectedSegmentIndex
     self.segmentWidthList = .init(repeating: 0, count: segmentTitleList.count)
   }
   
@@ -163,6 +165,6 @@ fileprivate struct ATSegmentedDynamicControlViewItemButton: View {
 
 #Preview {
   VStack {
-    ATSegmentedDynamicControlView(segmentTitleList: ["Test11111111", "Test2"])
+    ATSegmentedDynamicControlView(segmentTitleList: ["Test11111111", "Test2"], selectedSegmentIndex: .constant(0))
   }
 }
