@@ -14,7 +14,7 @@ extension WeatherTag {
   public var icon: Image {
     switch self {
     case .cloudy:
-      return Gen.Images.cloudy.image
+      return Gen.Images.fewClouds.image
     }
   }
 }
