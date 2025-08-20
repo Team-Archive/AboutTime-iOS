@@ -9,13 +9,14 @@
 import Foundation
 import SwiftUI
 import ArchiveFoundation
+import UIComponents
 import Home
 
 @main
 struct SampleApp: App {
   var body: some Scene {
     WindowGroup {
-      FriendStatusView(data: Profile.mockData())
+      HomeEntryView()
     }
   }
 }

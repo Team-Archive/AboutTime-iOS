@@ -47,7 +47,7 @@ public struct ATRoundIconButton: View {
   
   private var iconColor: Color {
     if self.isEnabled {
-      return Gen.Colors.white.color
+      return Gen.Colors.purpleGray500.color
     } else {
       return Gen.Colors.gray200.color
     }

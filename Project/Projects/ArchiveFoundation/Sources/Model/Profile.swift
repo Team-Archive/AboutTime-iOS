@@ -48,4 +48,121 @@ public struct Profile: Equatable {
       imageURL: MockImageURL.fetchData()
     )
   }
+  
+  public static func mockDatas(currentTime: TimeInterval) -> [Profile] {
+    return [
+      Profile(
+        userID: 1,
+        name: "수지",
+        time: LocalizedTime(
+          timestamp: currentTime,
+          timeZoneIdentifier: "America/Toronto"
+        ),
+        region: "🇨🇦 Montreal, Canada",
+        weather: Weather(
+          tag: .cloudy,
+          temperature: 21
+        ),
+        imageURL: MockImageURL.fetchData()
+      ),
+      Profile(
+        userID: 2,
+        name: "지민",
+        time: LocalizedTime(
+          timestamp: currentTime,
+          timeZoneIdentifier: "Europe/Moscow"
+        ),
+        region: "🇷🇺 Moscow, Russia",
+        weather: Weather(
+          tag: .cloudy,
+          temperature: 29
+        ),
+        imageURL: MockImageURL.fetchData()
+      ),
+      Profile(
+        userID: 3,
+        name: "민호",
+        time: LocalizedTime(
+          timestamp: currentTime,
+          timeZoneIdentifier: "Europe/London"
+        ),
+        region: "🇬🇧 London, UK",
+        weather: Weather(
+          tag: .cloudy,
+          temperature: 16
+        ),
+        imageURL: MockImageURL.fetchData()
+      ),
+      Profile(
+        userID: 4,
+        name: "유리",
+        time: LocalizedTime(
+          timestamp: currentTime,
+          timeZoneIdentifier: "Asia/Tokyo"
+        ),
+        region: "🇯🇵 Tokyo, Japan",
+        weather: Weather(
+          tag: .cloudy,
+          temperature: -2
+        ),
+        imageURL: MockImageURL.fetchData()
+      ),
+      Profile(
+        userID: 9,
+        name: "John",
+        time: LocalizedTime(
+          timestamp: currentTime,
+          timeZoneIdentifier: "America/New_York"
+        ),
+        region: "🇺🇸 New York, USA",
+        weather: Weather(
+          tag: .cloudy,
+          temperature: 22
+        ),
+        imageURL: MockImageURL.fetchData()
+      ),
+      Profile(
+        userID: 10,
+        name: "Emma",
+        time: LocalizedTime(
+          timestamp: currentTime,
+          timeZoneIdentifier: "Australia/Sydney"
+        ),
+        region: "🇦🇺 Sydney, Australia",
+        weather: Weather(
+          tag: .cloudy,
+          temperature: 18
+        ),
+        imageURL: MockImageURL.fetchData()
+      ),
+      Profile(
+        userID: 11,
+        name: "Carlos",
+        time: LocalizedTime(
+          timestamp: currentTime,
+          timeZoneIdentifier: "America/Mexico_City"
+        ),
+        region: "🇲🇽 Mexico City, Mexico",
+        weather: Weather(
+          tag: .cloudy,
+          temperature: 27
+        ),
+        imageURL: MockImageURL.fetchData()
+      ),
+      Profile(
+        userID: 12,
+        name: "Sophie",
+        time: LocalizedTime(
+          timestamp: currentTime,
+          timeZoneIdentifier: "Europe/Paris"
+        ),
+        region: "🇫🇷 Paris, France",
+        weather: Weather(
+          tag: .cloudy,
+          temperature: 14
+        ),
+        imageURL: MockImageURL.fetchData()
+      )
+    ]
+  }
 }

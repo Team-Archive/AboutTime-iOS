@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import ArchiveFoundation
 
 public struct ATToggleStyle: ToggleStyle {
   
@@ -25,8 +26,6 @@ public struct ATToggleStyle: ToggleStyle {
   public func makeBody(configuration: Self.Configuration) -> some View {
     HStack {
       configuration.label
-        .font(.body)
-      Spacer()
       RoundedRectangle(cornerRadius: 16, style: .circular)
         .fill(configuration.isOn ? onColor : offColor)
         .frame(width: 46, height: 26)

@@ -24,17 +24,8 @@ public struct FriendStatusView: View {
   // MARK: - Body
   public var body: some View {
     ZStack {
-      RoundedRectangle(cornerRadius: 24, style: .continuous)
-        .fill(
-          LinearGradient(
-            gradient: Gradient(colors: [
-              Gen.Colors.gradationMorningStart.color,
-              Gen.Colors.gradationMorningEnd.color
-            ]),
-            startPoint: .top,
-            endPoint: .bottom
-          )
-        )
+      ATGradientView(type: data.time.toGradient, direction: .vertical)
+        .clipShape(RoundedRectangle(cornerRadius: 24))
       
       HStack(spacing: 0) {
         HStack(spacing: 8) {
