@@ -107,7 +107,7 @@ struct AlbumSingleSelectPhotoView: View {
           Text(viewStore.selectedAlbum?.name ?? "-")
             .font(.fonts(.bodyBold16))
             .foregroundStyle(Gen.Colors.white.color)
-          Gen.Images.arrowMini.image
+          Gen.Images.arrowRight16.image
             .resizable()
             .frame(width: 16, height: 16)
             .rotationEffect(.degrees(90))
@@ -186,7 +186,7 @@ struct AlbumSingleSelectPhotoView: View {
           Button(action: {
             closeAction()
           }) {
-            Gen.Images.close.image
+            Gen.Images.close24.image
               .renderingMode(.template)
               .foregroundStyle(Gen.Colors.white.color)
           }

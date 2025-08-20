@@ -52,7 +52,7 @@ public struct MyProfileEditView: View {
             .clipShape(Circle())
             .background(Circle().fill(Gen.Colors.gray200.color))
           ATRoundIconButton(
-            icon: Gen.Images.gallery.image,
+            icon: Gen.Images.gallery24.image,
             backgroundColor: Gen.Colors.point.color,
             action: {
               isShowProfileImageEdit = true

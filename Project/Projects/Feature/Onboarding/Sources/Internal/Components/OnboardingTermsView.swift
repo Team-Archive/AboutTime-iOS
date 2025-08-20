@@ -112,7 +112,7 @@ struct OnboardingTermsView: View {
               .font(.fonts(.body14))
               .foregroundStyle(Gen.Colors.purple.color)
             Spacer()
-            Gen.Images.arrowMini.image
+            Gen.Images.arrowRight16.image
           }
         })
       }
@@ -135,7 +135,7 @@ struct OnboardingTermsView: View {
               .font(.fonts(.body14))
               .foregroundStyle(Gen.Colors.purple.color)
             Spacer()
-            Gen.Images.arrowMini.image
+            Gen.Images.arrowRight16.image
           }
         })
       }

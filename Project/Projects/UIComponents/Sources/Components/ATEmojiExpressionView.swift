@@ -64,7 +64,7 @@ public struct ATEmojiExpressionView: View {
       }
       
       ATSelectableButton(
-        contentsView: Gen.Images.emoji.image.resizable().aspectRatio(contentMode: .fit).frame(width: 20, height: 16),
+        contentsView: Gen.Images.emoji24.image.resizable().aspectRatio(contentMode: .fit).frame(width: 20, height: 16),
         backgroundColor: Gen.Colors.purpleGray300.color,
         isSelected: .constant(false)
       ) { _ in

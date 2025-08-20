@@ -111,7 +111,7 @@ struct SignUpSetActivityTimeView: View, SignUpStepView {
             Text("⏰ " + L10n.Localizable.signUpSetActivityTimeMakeCustomTimeButton)
               .font(.fonts(.buttonSemiBold14))
               .foregroundStyle(Gen.Colors.white.color)
-            Gen.Images.arrowMini.image
+            Gen.Images.arrowRight16.image
               .resizable()
               .frame(width: 16, height: 16)
           }

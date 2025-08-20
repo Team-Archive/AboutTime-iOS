@@ -51,7 +51,7 @@ public struct ATCheckImageButton: View {
           Circle()
             .fill(self.borderColor)
             .frame(width: 24, height: 24)
-          Gen.Images.check.image
+          Gen.Images.check24.image
             .resizable()
             .renderingMode(.template)
             .foregroundStyle(Gen.Colors.white.color)

@@ -17,7 +17,7 @@ public struct ATToast: View {
     var image: Image {
       switch self {
       case .check:
-        return Gen.Images.check.image
+        return Gen.Images.check24.image
       }
     }
     
@@ -59,7 +59,7 @@ public struct ATToast: View {
           
           Spacer()
           
-          Gen.Images.closeMini.image
+          Gen.Images.close24.image
             .resizable()
             .renderingMode(.template)
             .frame(width: 24, height: 24)

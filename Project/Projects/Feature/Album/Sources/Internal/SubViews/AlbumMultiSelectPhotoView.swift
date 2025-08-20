@@ -243,7 +243,7 @@ struct AlbumMultiSelectPhotoView: View {
           Button(action: {
             closeAction()
           }) {
-            Gen.Images.close.image
+            Gen.Images.close24.image
               .renderingMode(.template)
               .foregroundStyle(Gen.Colors.white.color)
           }

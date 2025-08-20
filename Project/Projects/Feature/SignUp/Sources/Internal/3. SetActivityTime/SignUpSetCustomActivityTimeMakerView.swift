@@ -216,7 +216,7 @@ struct SignUpSetCustomActivityTimeMakerView: View {
       action()
     }, label: {
       VStack {
-        Gen.Images.trash.image
+        Gen.Images.delete24.image
           .resizable()
           .frame(width: 28, height: 28)
       }

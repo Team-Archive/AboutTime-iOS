@@ -64,7 +64,7 @@ struct AlbumListView: View {
             Button(action: {
               self.isPresented = false
             }) {
-              Gen.Images.close.image
+              Gen.Images.close24.image
                 .renderingMode(.template)
                 .foregroundStyle(Gen.Colors.white.color)
             }

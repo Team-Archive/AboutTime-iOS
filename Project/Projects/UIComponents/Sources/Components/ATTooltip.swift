@@ -32,7 +32,7 @@ public struct ATTooltip: View {
               .font(.fonts(.bodyBold14))
               .foregroundStyle(contentColor)
             
-            Gen.Images.close.image
+            Gen.Images.close24.image
               .resizable()
               .renderingMode(.template)
               .aspectRatio(contentMode: .fit)

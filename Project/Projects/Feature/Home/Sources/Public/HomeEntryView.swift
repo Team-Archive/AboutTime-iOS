@@ -38,7 +38,7 @@ public struct HomeEntryView: View {
           Spacer()
           
           
-          Gen.Images.noti.image
+          Gen.Images.alert24.image
             .frame(width: 24, height: 24)
             
           

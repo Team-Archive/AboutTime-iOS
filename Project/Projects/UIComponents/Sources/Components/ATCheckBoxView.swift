@@ -68,7 +68,7 @@ public struct ATCheckBoxView: View {
         ZStack {
           Circle()
             .tint(self.backgroundColor)
-          Gen.Images.check.image
+          Gen.Images.check24.image
             .resizable()
             .renderingMode(.template)
             .tint(Gen.Colors.white.color)
