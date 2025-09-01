@@ -82,11 +82,11 @@ public struct PostItemView: View {
       .padding(.horizontal, 20)
       
       ATEmojiExpressionView(
-        geometry: geometry,
         data: data.emojiList
       ) {
         print("Tap Add Button")
       }
+      .padding(.horizontal, 20)
     }
   }
 }

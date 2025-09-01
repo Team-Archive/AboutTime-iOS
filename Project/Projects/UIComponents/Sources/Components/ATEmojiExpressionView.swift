@@ -26,6 +26,16 @@ public struct ATEmojiExpressionData: Hashable, Identifiable, Sendable {
     self.selectionCount = selectionCount
     self.isSelectedByUser = isSelectedByUser
   }
+  
+  public static func mockData() -> [ATEmojiExpressionData] {
+    ExpressiveEmoji.allCases.map {
+      ATEmojiExpressionData(
+        emoji: $0,
+        selectionCount: Int.random(in: 0...100),
+        isSelectedByUser: false
+      )
+    }
+  }
 }
 
 public struct ATEmojiExpressionView: View {
@@ -33,18 +43,10 @@ public struct ATEmojiExpressionView: View {
   @State private var data: [ATEmojiExpressionData]
   private var addButtonHandler: (() -> Void)?
   
-  private let geometry: GeometryProxy
-  
-  private var geometryWidth: CGFloat {
-    geometry.size.width - 40
-  }
-  
   public init(
-    geometry: GeometryProxy,
     data: [ATEmojiExpressionData] = [],
     addButtonHandler: (() -> Void)?
   ) {
-    self.geometry = geometry
     _data = State(initialValue: data)
     self.addButtonHandler = addButtonHandler
   }
@@ -71,6 +73,6 @@ public struct ATEmojiExpressionView: View {
         addButtonHandler?()
       }
     }
-    .frame(maxWidth: geometryWidth, alignment: .leading)
+    .frame(maxWidth: .infinity, alignment: .leading)
   }
 }
