@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Profile: Equatable {
+public struct Profile: Equatable, Sendable {
   public let userID: Int
   public let name: String
   public let time: LocalizedTime

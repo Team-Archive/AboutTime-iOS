@@ -27,10 +27,33 @@ public struct HomeEntryView: View {
     }
   }
   
-  @State var isToggleOn: Bool = false
   @State private var selectedSegment: HomeSegmentControlType = .feed
   
+  @State var isToggleOn: Bool = false
+  
   private let mockProfiles = Profile.mockDatas(currentTime: Date().timeIntervalSince1970)
+  
+  private var feedItemDatas: FeedListData = FeedListData(feedItems: [
+      FeedItemData(
+        profile: Profile.mockDatas(currentTime: currentTime).randomElement()!,
+        currentTime: Date().timeIntervalSince1970,
+        feedTime: Date().timeIntervalSince1970 - 3600,
+        statusText: "In the elevator",
+        feedImages: MockImageURL.fetchDatas(with: 5),
+        inActive: true
+      ),
+      FeedItemData(
+        profile: Profile.mockDatas(currentTime: currentTime).randomElement()!,
+        currentTime: Date().timeIntervalSince1970,
+        feedTime: Date().timeIntervalSince1970 - 60 * 10,
+        statusText: "Sunset",
+        feedImages: MockImageURL.fetchDatas(with: 5),
+        inActive: false
+      )
+    ]
+  )
+  
+  private static let currentTime = Date().timeIntervalSince1970
   
   public init() {
     
@@ -52,6 +75,7 @@ public struct HomeEntryView: View {
           )
           
           Spacer()
+          
           
           Gen.Images.alert24.image
             .frame(width: 24, height: 24)
@@ -85,7 +109,10 @@ public struct HomeEntryView: View {
             
             switch selectedSegment {
             case .feed:
-              Spacer()
+              FeedListView(
+                data: .constant(feedItemDatas),
+                isShowOnlyActiveFriends: $isToggleOn
+              )
             case .time:
               VStack(spacing: 8) {
                 ForEach(mockProfiles, id: \.userID) { profile in
