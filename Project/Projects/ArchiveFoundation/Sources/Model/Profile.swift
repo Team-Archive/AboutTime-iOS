@@ -15,6 +15,7 @@ public struct Profile: Equatable, Sendable {
   public let region: String
   public let weather: Weather
   public let imageURL: URL?
+  public let inActive: Bool
   
   public init(
     userID: Int,
@@ -22,7 +23,8 @@ public struct Profile: Equatable, Sendable {
     time: LocalizedTime,
     region: String,
     weather: Weather,
-    imageURL: URL?
+    imageURL: URL?,
+    inActive: Bool
   ) {
     self.userID = userID
     self.name = name
@@ -30,6 +32,7 @@ public struct Profile: Equatable, Sendable {
     self.region = region
     self.weather = weather
     self.imageURL = imageURL
+    self.inActive = inActive
   }
   
   public static func mockData() -> Profile {
@@ -45,7 +48,8 @@ public struct Profile: Equatable, Sendable {
         tag: .cloudy,
         temperature: 21
       ),
-      imageURL: MockImageURL.fetchData()
+      imageURL: MockImageURL.fetchData(),
+      inActive: true
     )
   }
   
@@ -63,7 +67,8 @@ public struct Profile: Equatable, Sendable {
           tag: .cloudy,
           temperature: 21
         ),
-        imageURL: MockImageURL.fetchData()
+        imageURL: MockImageURL.fetchData(),
+        inActive: false
       ),
       Profile(
         userID: 2,
@@ -77,7 +82,8 @@ public struct Profile: Equatable, Sendable {
           tag: .cloudy,
           temperature: 29
         ),
-        imageURL: MockImageURL.fetchData()
+        imageURL: MockImageURL.fetchData(),
+        inActive: true
       ),
       Profile(
         userID: 3,
@@ -91,7 +97,8 @@ public struct Profile: Equatable, Sendable {
           tag: .cloudy,
           temperature: 16
         ),
-        imageURL: MockImageURL.fetchData()
+        imageURL: MockImageURL.fetchData(),
+        inActive: false
       ),
       Profile(
         userID: 4,
@@ -105,7 +112,8 @@ public struct Profile: Equatable, Sendable {
           tag: .cloudy,
           temperature: -2
         ),
-        imageURL: MockImageURL.fetchData()
+        imageURL: MockImageURL.fetchData(),
+        inActive: false
       ),
       Profile(
         userID: 9,
@@ -119,7 +127,8 @@ public struct Profile: Equatable, Sendable {
           tag: .cloudy,
           temperature: 22
         ),
-        imageURL: MockImageURL.fetchData()
+        imageURL: MockImageURL.fetchData(),
+        inActive: false
       ),
       Profile(
         userID: 10,
@@ -133,7 +142,8 @@ public struct Profile: Equatable, Sendable {
           tag: .cloudy,
           temperature: 18
         ),
-        imageURL: MockImageURL.fetchData()
+        imageURL: MockImageURL.fetchData(),
+        inActive: true
       ),
       Profile(
         userID: 11,
@@ -147,7 +157,8 @@ public struct Profile: Equatable, Sendable {
           tag: .cloudy,
           temperature: 27
         ),
-        imageURL: MockImageURL.fetchData()
+        imageURL: MockImageURL.fetchData(),
+        inActive: false
       ),
       Profile(
         userID: 12,
@@ -161,7 +172,8 @@ public struct Profile: Equatable, Sendable {
           tag: .cloudy,
           temperature: 14
         ),
-        imageURL: MockImageURL.fetchData()
+        imageURL: MockImageURL.fetchData(),
+        inActive: true
       )
     ]
   }

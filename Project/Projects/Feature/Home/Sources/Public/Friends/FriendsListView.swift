@@ -32,10 +32,12 @@ struct FriendsListView: View {
   var body: some View {
     ZStack {
       VStack(spacing: 8) {
-        ForEach(data.friendsItems, id: \.userID) { profile in
-          FriendStatusView(data: profile)
+        ForEach(isShowOnlyActiveFriends ? data.friendsItems.filter { $0.inActive } : data.friendsItems, id: \.userID) { friend in
+          FriendStatusView(data: friend)
         }
       }
+      
+      Spacer(minLength: 24)
     }
   }
 }

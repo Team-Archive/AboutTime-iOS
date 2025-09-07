@@ -31,24 +31,8 @@ public struct HomeEntryView: View {
   
   @State var isToggleOn: Bool = false
   
-  private var feedListData: FeedListData = FeedListData(feedItems: [
-      FeedItemData(
-        profile: Profile.mockDatas(currentTime: currentTime).randomElement()!,
-        currentTime: currentTime,
-        feedTime: currentTime - 3600,
-        statusText: "In the elevator",
-        feedImages: MockImageURL.fetchDatas(with: 5),
-        inActive: true
-      ),
-      FeedItemData(
-        profile: Profile.mockDatas(currentTime: currentTime).randomElement()!,
-        currentTime: currentTime,
-        feedTime: currentTime - 60 * 10,
-        statusText: "Sunset",
-        feedImages: MockImageURL.fetchDatas(with: 5),
-        inActive: false
-      )
-    ]
+  private var feedListData: FeedListData = FeedListData(
+    feedItems: FeedItemData.mockDatas(currentTime: currentTime)
   )
   
   private var friendsListData: FriendsListData = FriendsListData(
