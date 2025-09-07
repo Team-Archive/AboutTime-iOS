@@ -31,26 +31,28 @@ public struct HomeEntryView: View {
   
   @State var isToggleOn: Bool = false
   
-  private let mockProfiles = Profile.mockDatas(currentTime: Date().timeIntervalSince1970)
-  
-  private var feedItemDatas: FeedListData = FeedListData(feedItems: [
+  private var feedListData: FeedListData = FeedListData(feedItems: [
       FeedItemData(
         profile: Profile.mockDatas(currentTime: currentTime).randomElement()!,
-        currentTime: Date().timeIntervalSince1970,
-        feedTime: Date().timeIntervalSince1970 - 3600,
+        currentTime: currentTime,
+        feedTime: currentTime - 3600,
         statusText: "In the elevator",
         feedImages: MockImageURL.fetchDatas(with: 5),
         inActive: true
       ),
       FeedItemData(
         profile: Profile.mockDatas(currentTime: currentTime).randomElement()!,
-        currentTime: Date().timeIntervalSince1970,
-        feedTime: Date().timeIntervalSince1970 - 60 * 10,
+        currentTime: currentTime,
+        feedTime: currentTime - 60 * 10,
         statusText: "Sunset",
         feedImages: MockImageURL.fetchDatas(with: 5),
         inActive: false
       )
     ]
+  )
+  
+  private var friendsListData: FriendsListData = FriendsListData(
+    friendsItems: Profile.mockDatas(currentTime: currentTime)
   )
   
   private static let currentTime = Date().timeIntervalSince1970
@@ -110,15 +112,14 @@ public struct HomeEntryView: View {
             switch selectedSegment {
             case .feed:
               FeedListView(
-                data: .constant(feedItemDatas),
+                data: .constant(feedListData),
                 isShowOnlyActiveFriends: $isToggleOn
               )
             case .time:
-              VStack(spacing: 8) {
-                ForEach(mockProfiles, id: \.userID) { profile in
-                  FriendStatusView(data: profile)
-                }
-              }
+              FriendsListView(
+                data: .constant(friendsListData),
+                isShowOnlyActiveFriends: $isToggleOn
+              )
             }
             
             Spacer()
